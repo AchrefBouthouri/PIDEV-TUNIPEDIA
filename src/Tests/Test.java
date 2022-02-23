@@ -34,8 +34,6 @@ public class Test {
         //CategoryService CS = new CategoryService();
         //OfferService OC = new OfferService();
         
-        Md5 var = new Md5("123");
-        System.out.println(var.codeGet());
 
         // Instanciation des objets
         //Person p1 = new Administrateur(0, "Wassim Omrani", "wassim.omrani@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
@@ -54,6 +52,8 @@ public class Test {
         
         //AS.ajouterAttachement(a1);
         //CLS.AjouterClient(PER1, a1);
+        //System.out.println(ps.afficherPerson());
+        //pls.AjouterPlace(pl1, p1);
 
         
 

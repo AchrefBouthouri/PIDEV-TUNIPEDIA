@@ -21,21 +21,22 @@ import java.util.List;
  * @author Achref Bouthouri
  */
 public class PlaceService {
-    Connection mc;
-    PreparedStatement ste,ste1; 
 
+    Connection mc;
+    PreparedStatement ste, ste1;
 
     public PlaceService() {
-        mc= ConnexionDB.getInstance().getCnx();
-
-
+        mc = ConnexionDB.getInstance().getCnx();
     }
-    public void AjouterPlace(Place p, Person p1){
-            String sql1 = "Update Person Set Role='Owner' where FullName=?";
-            String sql = "INSERT INTO Place(Name,Description,Adress,City,PostalCode,Latitude,Longitude,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    
+
+    public void AjouterPlace(Place p, Person p1) {
+        String sql = "INSERT INTO Place(Name,Description,Adress,City,PostalCode,Latitude,Longitude,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql1 = "Update Person Set Role='Owner' where id=?";
         try {
-            ste=mc.prepareStatement(sql);
-           // ste.setInt(1, p.getId());
+            // Insert Place
+            ste = mc.prepareStatement(sql);
+            // ste.setInt(1, p.getId());
             ste.setString(1, p.getName());
             ste.setString(2, p.getDescription());
             ste.setString(3, p.getAdresse());
@@ -47,69 +48,65 @@ public class PlaceService {
             ste.setInt(9, p.getEvaluation());
             ste.setInt(10, p.getNotice());
             ste.setBoolean(11, p.isStatus());
-            ste.setInt(12, p.getCreatedBy());
+            ste.setInt(12, p1.getId());
             ste.setString(13, p.getType());
             ste.setInt(14, p.getAttachement());
-            
             mc.prepareStatement(sql);
             ste.executeUpdate();
             System.out.println("Place ajoutÃ©e!");
-            if ( (p1.getRole() != "Owner") && (p.getType() == "Private" ))
-            {
-               ste = mc.prepareStatement(sql1);
-           ste.setString(1, p1.getFullName());
-           ste.executeUpdate(); 
-            System.out.println("Vous ete promu en Owner");
+
+            // Update Preson Role
+            if ((p1.getRole() != "Owner") && (p.getType() == "Private")) {
+                ste = mc.prepareStatement(sql1);
+                ste.setString(1, p1.getFullName());
+                ste.executeUpdate();
+                System.out.println("Vous ete promu en Owner");
             }
-        }
-        catch (SQLException ex) {
-            System.out.println(ex.getMessage());  
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
-    
-public List<Place> afficherPlace(){
+
+    public List<Place> afficherPlace() {
         List<Place> place = new ArrayList<>();
         String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id";
         try {
-            ste =mc.prepareStatement(sql);
-            ResultSet rs=ste.executeQuery();
-            while(rs.next()){
-            Place p = new Place();
-            
-            p.setId(rs.getInt(1));
-            p.setName(rs.getString(2));
-            p.setDescription(rs.getString(3));
-            p.setAdresse(rs.getString(4));
-            p.setCity(rs.getString(5));
-            p.setPostalCode(rs.getString(6));
-            p.setLatitude(rs.getString(7));
-            p.setLongitude(rs.getString(8));
-            p.setEvaluation(rs.getInt(9));
-            p.setNotice(rs.getInt(10));
-            p.setStatus(rs.getBoolean(11));
-            p.setCreatedBy(rs.getInt(12));
-                   String TypeStr = rs.getString(13);
-                   Type TypeEnum = Type.valueOf(TypeStr);
-            p.setType(TypeEnum);
-            p.setAttachement(rs.getInt(14));
-            p.setCategory(rs.getString(15));
-           
-            place.add(p);
-                
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setEvaluation(rs.getInt(9));
+                p.setNotice(rs.getInt(10));
+                p.setStatus(rs.getBoolean(11));
+                p.setCreatedBy(rs.getInt(12));
+                String TypeStr = rs.getString(13);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(14));
+                p.setCategory(rs.getString(15));
+                place.add(p);
             }
         } catch (SQLException ex) {
-           System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
-       // System.out.println(personnes);
-         return place;
-         
+        // System.out.println(personnes);
+        return place;
+
     }
-/*
-    public void SupprimerPlace(Place p){
+    
+    public void SupprimerPlace(int id){
              String sql = "delete from Place where Id=?";
         try {
            ste = mc.prepareStatement(sql);
-           ste.setInt(1, p.getId());
+           ste.setInt(1, id);
            ste.executeUpdate(); 
             System.out.println("Place SupprimÃ©e!");
         } catch (SQLException ex) {
@@ -117,12 +114,12 @@ public List<Place> afficherPlace(){
         }
     }
     
-    public void UpdateNamePlace(String Name, Place p){
+    public void UpdateNamePlace(String Name, int id){
              String sql = "UPDATE  Place set Name=? where id=?";
         try {
            ste = mc.prepareStatement(sql);
            ste.setString(1, Name);
-           ste.setInt(2, p.getId());
+           ste.setInt(2, id);
            ste.executeUpdate(); 
             System.out.println("le Nom est mis Ã  jour!");
         } catch (SQLException ex) {
@@ -154,6 +151,6 @@ public List<Place> afficherPlace(){
             System.out.println(ex.getMessage());  
         }
     }
-  */  
+     
 
 }

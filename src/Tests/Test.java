@@ -5,10 +5,12 @@
  */
 package Tests;
 
+import Entities.Offer;
 import Entities.Person;
 import Entities.Place;
 import Enum.Gender;
 import Enum.Type;
+import Services.OfferService;
 import Services.PersonService;
 import Services.PlaceService;
 import Tools.ConnexionDB;
@@ -31,6 +33,7 @@ public class Test {
         // Services
         PersonService ps = new PersonService();
         PlaceService pls = new PlaceService();
+        OfferService os = new OfferService();
         //CategoryService CS = new CategoryService();
         //OfferService OC = new OfferService();
         
@@ -49,9 +52,14 @@ public class Test {
         
         //Attachement a1 = new Attachement(0, "ville.png", "src/ville.png");
         //Category c1 = new Category(0,"Ville",a1.getId());
-        //Offer o = new Offer (new Date(0),new Date(122,1,1),500,8);
+        Offer o = new Offer (2,new Date(122,1,1),new Date(122,1,1),500,8);
         
-        
+        // os.ajouterOffer(o);
+        //  os.SupprimerOffer(o);
+       // os.UpdateDateDebut(date_debut, o);
+        os.UpdateMontant(900,3);
+        //os.Updatedatefin(date_fin, o);
+       // os.afficherOffer()
         //AS.ajouterAttachement(a1);
         //CLS.AjouterClient(PER1, a1);
 

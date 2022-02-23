@@ -28,8 +28,8 @@ public class PersonService {
         mc= ConnexionDB.getInstance().getCnx();
     }
     public void AjouterPersonne(Person p){
-            String sql = "INSERT INTO Person(FullName,Email,Password,Avatar,HasPlaces,Gender,CreatedAt,Nationalite,isPartner,Role) VALUES(?,?,?,?,?,?,?,?,?,?)";
-        try {
+            String sql = "INSERT INTO Person(FullName,Email,Password,Avatar,HasPlaces,Gender,CreatedAt,Nationalite,isPartner,Role) VALUES(?,?,?,?,?,?,NOW(),?,?,?)";
+            try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, p.getFullName());
             ste.setString(2, p.getEmail());
@@ -39,14 +39,13 @@ public class PersonService {
             ste.setInt(4, p.getAvatar());
             ste.setBoolean(5, p.getHasplaces());
             ste.setString(6, p.getGender());
-            ste.setDate(7, p.getCreatedAt());
-            ste.setString(8, p.getNationalite());
-            ste.setBoolean(9, p.GetIsPartner());
-            ste.setString(10, p.getRole());
+           // ste.setDate(7, p.getCreatedAt());
+            ste.setString(7, p.getNationalite());
+            ste.setBoolean(8, p.GetIsPartner());
+            ste.setString(9, p.getRole());
             mc.prepareStatement(sql);
             ste.executeUpdate();
             System.out.println("Personne ajoutée!");
-            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
@@ -62,10 +61,7 @@ public class PersonService {
             p.setId(rs.getInt(1));
             p.setFullName(rs.getString(2));
             p.setEmail(rs.getString(3));
-             //Md5 var = new Md5(rs.getString(4));
-            //p.setPassword(Md5.decryptAES(var.codeGet(),"key"));
-                //System.out.println(var.codeGet());
-                p.setPassword(rs.getString(4));
+            p.setPassword(rs.getString(4));
             p.setAvatar(rs.getInt(5));
             p.setHasplaces(rs.getBoolean(6));
                 String GenderStr = rs.getString(7);
@@ -76,8 +72,8 @@ public class PersonService {
             p.setIsPartner(rs.getBoolean(10));
             p.setRole(rs.getString(11));
             
-            personnes.add(p);   
-           
+            personnes.add(p);
+                
             }
         } catch (SQLException ex) {
            System.out.println(ex.getMessage());
@@ -104,7 +100,7 @@ public class PersonService {
            ste.setString(1, FullName);
            ste.setInt(2, id);
            ste.executeUpdate(); 
-            System.out.println("FullName mis Ã  jour!");
+            System.out.println("FullName mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
@@ -116,7 +112,7 @@ public class PersonService {
            ste.setString(1, Email);
            ste.setInt(2, id);
            ste.executeUpdate(); 
-            System.out.println("Email mis Ã  jour!");
+            System.out.println("Email mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
@@ -126,15 +122,17 @@ public class PersonService {
              String sql = "UPDATE  Person set Password=? where id=?";
         try {
            ste = mc.prepareStatement(sql);
-           ste.setString(1, Password);
+              Md5 var = new Md5(Password);
+                //System.out.println(var.codeGet());
+            ste.setString(1, var.codeGet());
            ste.setInt(2, id);
            ste.executeUpdate(); 
-            System.out.println("Mot de passe mis Ã  jour!");
+            System.out.println("Mot de passe mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
     }
-        public void UpdateGender(Gender gender, int id){
+        public void UpdateGender(Gender gender, int id ){
              String sql = "UPDATE  Person set Gender=? where id=?";
              String GenderStr = gender.name();
         try {
@@ -142,10 +140,9 @@ public class PersonService {
            ste.setString(1, GenderStr);
            ste.setInt(2, id);
            ste.executeUpdate(); 
-            System.out.println("Sexe mis Ã  jour!");
+            System.out.println("Sexe mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
     }
 }
-

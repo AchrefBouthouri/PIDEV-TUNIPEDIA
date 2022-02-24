@@ -60,34 +60,34 @@ String Gend;
          rb1.setToggleGroup(gen);
          rb2.setToggleGroup(gen);
     }    
-    public String getGender(ActionEvent event){
-    if(rb1.isSelected()){
-        Gend = rb1.getText();
-    }
-     if(rb2.isSelected()){
-        Gend = rb2.getText();
-    }
-     return Gend;
-    }
-    @FXML
-    private void Ajouter(ActionEvent event) {
-        String Name = FullName.getText();
-        String Mail = Email.getText();
-        String pwd = Password.getText();
-       // Gender GenderEnum = Gender.valueOf(Gend);
-        String Nation = Nationality.getValue();
-        Person p = new Client(0, Name, Mail, pwd, 0, false, new Date(122,2,2), Gender.Female, Nation);
-         PersonService ps = new PersonService(); 
-        ps.AjouterPersonne(p);
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherPersonne.fxml"));
-        try {
-            Parent root = loader.load();
-            AfficherPersonneController ac = loader.getController();
-            ac.setAfficher(ps.afficherPerson().toString());
-            FullName.getScene().setRoot(root);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }*/
-    }
+//    public String getGender(ActionEvent event){
+//    if(rb1.isSelected()){
+//        Gend = rb1.getText();
+//    }
+//     if(rb2.isSelected()){
+//        Gend = rb2.getText();
+//    }
+//     return Gend;
+//    }
+//    @FXML
+//    private void Ajouter(ActionEvent event) {
+//        String Name = FullName.getText();
+//        String Mail = Email.getText();
+//        String pwd = Password.getText();
+//       // Gender GenderEnum = Gender.valueOf(Gend);
+//        String Nation = Nationality.getValue();
+//        Person p = new Client(0, Name, Mail, pwd, 0, false, new Date(122,2,2), Gender.Female, Nation);
+//         PersonService ps = new PersonService(); 
+//        ps.AjouterPersonne(p);
+//        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherPersonne.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            AfficherPersonneController ac = loader.getController();
+//            ac.setAfficher(ps.afficherPerson().toString());
+//            FullName.getScene().setRoot(root);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }*/
+//    }
     
 }

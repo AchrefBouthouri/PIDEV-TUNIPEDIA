@@ -6,7 +6,7 @@
 package Services;
 
 import Entities.Person;
-import Enum.Gender;
+import Enum.*;
 import Tools.ConnexionDB;
 import Tools.Md5;
 import java.sql.Connection;
@@ -30,7 +30,7 @@ public class PersonService {
     }
 
     public Person Connexion(String email, String password) {
-        String sql = "select * from Person where Email=? and Password=?";
+        String sql = "select * from Person where Email=? AND Password=?";
         Person p = new Person();
         Md5 var = new Md5(password);
         try {
@@ -44,22 +44,70 @@ public class PersonService {
             while (rs.next()) {
                 p.setId(rs.getInt(1));
                 //if (var.codeGet().equals(rs.getString(4))) {
-                    p.setId(rs.getInt(1));
-                    p.setFullName(rs.getString(2));
-                    p.setEmail(rs.getString(3));
-                    p.setPassword(rs.getString(4));
-                    p.setAvatar(rs.getInt(5));
-                    p.setHasplaces(rs.getBoolean(6));
-                    String GenderStr = rs.getString(7);
-                    Gender GenderEnum = Gender.valueOf(GenderStr);
-                    p.setGender(GenderEnum);
-                    p.setCreatedAt(rs.getDate(8));
-                    p.setNationalite(rs.getString(9));
-                    p.setIsPartner(rs.getBoolean(10));
-                    p.setRole(rs.getString(11));
-                }
-                System.out.println("Personne Trouve!");
-           // }
+                p.setId(rs.getInt(1));
+                p.setFullName(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setPassword(rs.getString(4));
+                p.setAvatar(rs.getInt(5));
+                p.setHasplaces(rs.getBoolean(6));
+                //String GenderStr = rs.getString(7);
+                //Gender GenderEnum = Gender.valueOf(GenderStr);
+                //p.setGender(GenderEnum);
+                p.setCreatedAt(rs.getDate(8));
+                p.setNationalite(rs.getString(9));
+                p.setIsPartner(rs.getBoolean(10));
+                p.setRole(rs.getString(11));
+            }
+            System.out.println("Personne Trouve!");
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+
+    }
+
+    public Person SignUp(String name, String email, String password) {
+        String sqlAP = "INSERT INTO Person(FullName,Email,Password,Avatar,HasPlaces,CreatedAt,isPartner,Role) VALUES(?,?,?,?,?,NOW(),?,?)";
+        String sqlRP = "select * from Person where Email=?";
+        Person p = new Person();
+        try {
+            ste = mc.prepareStatement(sqlAP);
+            ste.setString(1, name);
+            ste.setString(2, email);
+            Md5 var = new Md5(password);;
+            ste.setString(3, var.codeGet());
+            //System.out.println(var.codeGet())
+            ste.setInt(4, 0);
+            ste.setBoolean(5, false);
+            ste.setBoolean(7, false);
+            ste.setString(8, "Client");
+            mc.prepareStatement(sqlAP);
+            ste.executeUpdate();
+
+            ste = mc.prepareStatement(sqlRP);
+            ste.setString(1, email);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                //p.setId(rs.getInt(1));
+                //if (var.codeGet().equals(rs.getString(4))) {
+                p.setId(rs.getInt(1));
+                p.setFullName(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setPassword(rs.getString(4));
+                p.setAvatar(rs.getInt(5));
+                p.setHasplaces(rs.getBoolean(6));
+                //String GenderStr = rs.getString(7);
+                //Gender GenderEnum = Gender.valueOf(GenderStr);
+                // p.setGender(GenderEnum);
+                System.out.println(rs.getDate(7));
+                p.setCreatedAt(rs.getDate(7));
+                // p.setNationalite(rs.getString(9));
+                p.setIsPartner(rs.getBoolean(8));
+                p.setRole(rs.getString(9));
+            }
+            System.out.println("Session Ouverte!");
+            // }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -86,6 +134,37 @@ public class PersonService {
             mc.prepareStatement(sql);
             ste.executeUpdate();
             System.out.println("Personne ajoutée!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void getPersonById(int id) {
+        String sql = "select¨* from Person where id=?";
+        Person p = new Person();
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, id);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                //p.setId(rs.getInt(1));
+                //if (var.codeGet().equals(rs.getString(4))) {
+                p.setId(rs.getInt(1));
+                p.setFullName(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setPassword(rs.getString(4));
+                p.setAvatar(rs.getInt(5));
+                p.setHasplaces(rs.getBoolean(6));
+                //String GenderStr = rs.getString(7);
+                //Gender GenderEnum = Gender.valueOf(GenderStr);
+                // p.setGender(GenderEnum);
+                System.out.println(rs.getDate(7));
+                p.setCreatedAt(rs.getDate(7));
+                // p.setNationalite(rs.getString(9));
+                p.setIsPartner(rs.getBoolean(8));
+                p.setRole(rs.getString(9));
+            }
+            System.out.println("Personne Recuperer!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -185,6 +264,19 @@ public class PersonService {
             ste.setInt(2, id);
             ste.executeUpdate();
             System.out.println("Sexe mis à jour!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+        public void UpdateNationalite(String Nationalite, int id) {
+        String sql = "UPDATE Person set Nationalite=? where id=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setString(1, Nationalite);
+            ste.setInt(2, id);
+            ste.executeUpdate();
+            System.out.println("Nationalite mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

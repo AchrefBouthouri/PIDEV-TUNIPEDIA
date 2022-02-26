@@ -24,56 +24,58 @@ import javafx.util.Duration;
  */
 public class MainController implements Initializable {
 
- @FXML
-    private VBox vbox;    
+    @FXML
+    private VBox vbox;
     private Parent fxml;
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 20);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
-                
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+
             }
         });
     }
+
     @FXML
-    private void open_signin(ActionEvent event){
-          TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+    private void open_signin(ActionEvent event) {
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 20);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
-                
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+
             }
         });
-    }   
+    }
+
     @FXML
-    private void open_signup(ActionEvent event){
-          TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+    private void open_signup(ActionEvent event) {
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(0);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
-                
+            } catch (IOException ex) {
+
             }
         });
-    }   
-    
+    }
+
 }

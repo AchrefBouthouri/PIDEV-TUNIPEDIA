@@ -6,12 +6,12 @@
     -fx-background-color: transparent;
 }
 .pane{
-   -fx-background-color: #2196f3; 
+   -fx-background-color: #f0af4d; 
 }
 .trans-btn-white-border{
     -fx-background-color: transparent;
     -fx-background-radius: 5px;
-    -fx-border-color: #cccccc;
+    -fx-border-color: #ffffff;
     -fx-border-radius: 5px;
     -fx-border-width: 1px;
     -fx-text-fill: whitesmoke;
@@ -20,7 +20,7 @@
     -fx-background-color: #ffffff;
 }
 .blue-panel{
-    -fx-background-color: #151928;
+    -fx-background-color: #9f7866;
 }
 .tf_box{
     -fx-background-color: transparent;
@@ -31,8 +31,35 @@
     -fx-background-color: transparent;    
 }
 .blue-btn{
-    -fx-background-color: #2196f3;
+    -fx-background-color: #f0af4d;
     -fx-background-radius: 5px;
-    -fx-text-fill: #fffff;
+    -fx-text-fill: #ffffff;
 }
 
+.wt-icon{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 0px 0px 1px 0px;
+     -fx-border-color: #fffffff;
+}
+
+.primary-color{
+    -fx-background-color:#f0af4d;
+}
+
+.Secondary-color{
+    -fx-background-color:#eeeff1;
+    
+}
+
+.button-profile{
+    -fx-background-color:#9f7866;
+    -fx-background-radius: 30;
+}
+
+.photo-profile{
+    -fx-effect: dropshadow(three-pass-box, rgba(1,0,0,0.8), 10, 0, 0, 10);
+   
+    
+
+    
+}

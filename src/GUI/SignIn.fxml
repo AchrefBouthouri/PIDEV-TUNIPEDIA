@@ -1,48 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" styleClass="parent" stylesheets="@styles.css" fx:controller="GUI.SignInController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" >
 
+    <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" styleClass="blue-panel" stylesheets="@styles.css"  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="30.0">
+                <children>
+                    <ImageView fitHeight="208.0" fitWidth="264.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@logo.png" />
+                        </image>
+                        <HBox.margin>
+                              <Insets top="-50.0"  />
+                        </HBox.margin>
+                    </ImageView>
+                </children>
+            </HBox> 
+        </children>
 
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" styleClass="blue-panel" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label text="Login" textFill="#2196f3">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
-         <children>
-            <TextField promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
-         </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="15.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
-         <children>
-            <TextField promptText="Password" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="1.3em" />
-         </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="20.0" />
-         </VBox.margin>
-      </HBox>
-   </children>
-</VBox>
+        <children>    
+            <Label text="Login" textFill="#f0af4d">
+                <font>
+                    <Font size="20.0" />
+                </font>
+                <VBox.margin>
+                    <Insets left="20.0" />
+                </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                <children>
+                    <FontAwesomeIcon glyphName="ENVELOPE" styleClass="wt_icon" layoutX="75.0" layoutY="117.0" text="" />
+                    <TextField promptText="Email" fx:id="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+           
+                </children>
+                <VBox.margin>
+                    <Insets left="15.0" right="15.0" top="15.0" />
+                </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                <children>
+                    <FontAwesomeIcon glyphName="KEY" layoutX="75.0" layoutY="176.0" />
+                    <TextField promptText="Password" fx:id="Password" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+           
+                </children>
+         
+                <VBox.margin>
+                    <Insets left="15.0" right="15.0" top="20.0" />
+                </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#SignIn" prefHeight="38.0" prefWidth="456.0" styleClass="blue-btn" text="Sign In" textFill="WHITE">
+                <font>
+                    <Font size="17.0" />
+                </font>
+                <VBox.margin>
+                    <Insets left="15.0" right="15.0" top="20.0" />
+                </VBox.margin>
+            </Button>
+        </children>
+    </VBox>
+</AnchorPane>

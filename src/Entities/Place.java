@@ -12,6 +12,7 @@ import Enum.Type;
  * @author Achref Bouthouri
  */
 public class Place {
+
     private int id;
     private String name;
     private String Description;
@@ -27,7 +28,8 @@ public class Place {
     private int CreatedBy;
     private Type type;
     private int attachement_id;
-    private String category; 
+    private String category;
+    private String Img;
     //private int[] evaluations;
 
     public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id) {
@@ -49,11 +51,19 @@ public class Place {
     }
 
     public Place() {
-       
+
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getImg() {
+        return Img;
+    }
+
+    public void setImg(String Img) {
+        this.Img = Img;
     }
 
     public String getName() {
@@ -91,7 +101,6 @@ public class Place {
     public int getEvaluation() {
         return evaluation;
     }
-
 
     public int getNotice() {
         return Notice;
@@ -149,7 +158,7 @@ public class Place {
         this.Longitude = Longitude;
     }
 
-    public void setCategory_id(int category) {
+    public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
 
@@ -183,8 +192,7 @@ public class Place {
 
     @Override
     public String toString() {
-        return "********************" + "\n id=" + id + ",\n name=" + name + ",\n Description=" + Description + ",\n Adresse=" + Adresse + ",\n City=" + City + ",\n PostalCode=" + PostalCode + ",\n Latitude=" + Latitude + ",\n Longitude=" + Longitude + ",\n category=" + category + ",\n evaluation=" + evaluation + ",\n Notice=" + Notice + ",\n Status=" + Status + ",\n CreatedBy=" + CreatedBy + ",\n type=" + type +  "\n************************";
+        return "********************" + "\n id=" + id + ",\n name=" + name + ",\n Description=" + Description + ",\n Adresse=" + Adresse + ",\n City=" + City + ",\n PostalCode=" + PostalCode + ",\n Latitude=" + Latitude + ",\n Longitude=" + Longitude + ",\n category=" + category + ",\n evaluation=" + evaluation + ",\n Notice=" + Notice + ",\n Status=" + Status + ",\n CreatedBy=" + CreatedBy + ",\n type=" + type + "\n************************";
     }
-     
-}
 
+}

@@ -44,7 +44,7 @@ public class Test {
         //Person p3 = new Client(0, "Houssem Gadhgadhi", "houssem.gadhgadhi@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
         //Person p4 = new Client(0, "Youssef Ben Slama", "youssef.benslama@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
         //Person p5 = new Client(0, "Mohamed Amine Teyeb", "amine.tayeb@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
-        Person p6 = new Client(0, "Mohamed Amine Chouchene", "moham@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
+        //Person p6 = new Client(0, "Mohamed Amine Chouchene", "moham@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
         //ps.AjouterPersonne(p6);
         Place pl1 = new Place(0, "Hammamet", "XXX", "XXX", "XXX", "4150", "14N15E", "12S13W", 2, 0, 0, true, 0, Type.Private, 0);
 

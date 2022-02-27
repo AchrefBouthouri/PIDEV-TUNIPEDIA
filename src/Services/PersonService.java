@@ -9,6 +9,7 @@ import Entities.Person;
 import Enum.*;
 import Tools.ConnexionDB;
 import Tools.Md5;
+import Tools.Session;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -280,5 +281,80 @@ public class PersonService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+        
+         public boolean Authentification(Person u) {
+        boolean status = false;
+        try {
+            String req = "select * from Person where Email=? ";
+            PreparedStatement st;
+            st = mc.prepareStatement(req);
+            st.setString(1, u.getEmail());
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                if (u.getPassword().equals(rs.getString("Password"))) {
+
+                    status = true;
+                    u = this.findById(rs.getInt("Id"));
+                    
+                    
+                    Session.setUser(u);
+                    
+                  
+
+                } else {
+                    status = false;
+                }
+
+            }
+        } catch (Exception ex) {
+        }
+        return status;
+    }
+         
+         public Person findById(int idconnected) {
+        Person p = null;
+        try {
+            String req = "select  Id,Fullname,Email,Password,Avatar,Hasplaces,balance from Person where Id=? ";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idconnected);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                p = new Person(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getInt(5),rs.getBoolean(6), rs.getFloat(7));
+            }
+        } catch (SQLException a) {
+        }
+        return p;
+    }
+  public String checkRole(String email) {
+        String default_return = "ND";
+        try {
+            String req;
+            req = "select Role from person where Email=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setString(1, email);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                if (rs.getString(1).equals("Admin")) {
+
+                    return "Admin";
+                } else if (rs.getString(1).equals("Owner")) {
+                    return "Owner";
+                } else if (rs.getString(1).equals("Owner")) {
+                    return "Owner";
+                } else if (rs.getString(1).equals("Client")) {
+                    return "Client";
+              }
+
+            }
+
+        } catch (SQLException ex) {
+        }
+        return default_return;
     }
 }

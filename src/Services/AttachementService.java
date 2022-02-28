@@ -6,10 +6,15 @@
 package Services;
 
 import Entities.Attachement;
+import Entities.Person;
+import Enum.Gender;
 import Tools.ConnexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -48,5 +53,38 @@ public class AttachementService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
+    }
+        
+        
+   public Attachement findById(int id) {
+        Attachement a = null;
+        try {
+            String req = "select * from Attachement where id=? ";
+            ste = conn.prepareStatement(req);
+            ste.setInt(1, id);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                a = new Attachement(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return a;
+    }
+
+      public Attachement findByPath(String Path) {
+        Attachement a = null;
+        try {
+            String req = "select * from Attachement where Path=? ";
+            ste = conn.prepareStatement(req);
+            ste.setString(1, Path);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                a = new Attachement(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return a;
     }
 }

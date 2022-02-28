@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -60,7 +61,7 @@ public class PersonService {
                 p.setRole(rs.getString(11));
             }
             System.out.println("Personne Trouve!");
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -69,7 +70,7 @@ public class PersonService {
     }
 
     public Person SignUp(String name, String email, String password) {
-        String sqlAP = "INSERT INTO Person(FullName,Email,Password,Avatar,HasPlaces,CreatedAt,isPartner,Role) VALUES(?,?,?,?,?,NOW(),?,?)";
+        String sqlAP = "INSERT INTO Person(FullName,Email,Password,Avatar,HasPlaces,isPartner,Role,balance,CreatedAt) VALUES(?,?,?,?,?,?,?,?,NOW())";
         String sqlRP = "select * from Person where Email=?";
         Person p = new Person();
         try {
@@ -79,10 +80,11 @@ public class PersonService {
             Md5 var = new Md5(password);;
             ste.setString(3, var.codeGet());
             //System.out.println(var.codeGet())
-            ste.setInt(4, 0);
+            ste.setInt(4, 7);
             ste.setBoolean(5, false);
-            ste.setBoolean(7, false);
-            ste.setString(8, "Client");
+            ste.setBoolean(6, false);
+            ste.setString(7, "Client");
+            ste.setInt(8, 0);
             mc.prepareStatement(sqlAP);
             ste.executeUpdate();
 
@@ -101,11 +103,11 @@ public class PersonService {
                 //String GenderStr = rs.getString(7);
                 //Gender GenderEnum = Gender.valueOf(GenderStr);
                 // p.setGender(GenderEnum);
-                System.out.println(rs.getDate(7));
-                p.setCreatedAt(rs.getDate(7));
+                //System.out.println(rs.getDate(7));
+                p.setCreatedAt(rs.getDate("CreatedAt"));
                 // p.setNationalite(rs.getString(9));
                 p.setIsPartner(rs.getBoolean(8));
-                p.setRole(rs.getString(9));
+                p.setRole((rs.getString("Role")));
             }
             System.out.println("Session Ouverte!");
             // }
@@ -113,7 +115,6 @@ public class PersonService {
             System.out.println(ex.getMessage());
         }
         return p;
-
     }
 
     public void AjouterPersonne(Person p) {
@@ -228,14 +229,14 @@ public class PersonService {
         }
     }
 
-    public void UpdateEmail(String Email, int id) {
-        String sql = "UPDATE  Person set Email=? where id=?";
+    public void UpdateAvatar(int idu, int ida) {
+        String sql = "UPDATE  Person set Avatar=? where id=?";
         try {
             ste = mc.prepareStatement(sql);
-            ste.setString(1, Email);
-            ste.setInt(2, id);
+            ste.setInt(1, ida);
+            ste.setInt(2, idu);
             ste.executeUpdate();
-            System.out.println("Email mis à jour!");
+            System.out.println("Avatar mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -269,8 +270,8 @@ public class PersonService {
             System.out.println(ex.getMessage());
         }
     }
-    
-        public void UpdateNationalite(String Nationalite, int id) {
+
+    public void UpdateNationalite(String Nationalite, int id) {
         String sql = "UPDATE Person set Nationalite=? where id=?";
         try {
             ste = mc.prepareStatement(sql);
@@ -282,79 +283,97 @@ public class PersonService {
             System.out.println(ex.getMessage());
         }
     }
-        
-         public boolean Authentification(Person u) {
+
+    public boolean Authentification(Person u) {
         boolean status = false;
+        Md5 var = new Md5(u.getPassword());
         try {
-            String req = "select * from Person where Email=? ";
-            PreparedStatement st;
-            st = mc.prepareStatement(req);
-            st.setString(1, u.getEmail());
-
-            ResultSet rs = st.executeQuery();
-
+            String req = "select * from Person where Email=?";
+            ste = mc.prepareStatement(req);
+            ste.setString(1, u.getEmail());
+            ResultSet rs = ste.executeQuery();
             while (rs.next()) {
-                if (u.getPassword().equals(rs.getString("Password"))) {
-
+                System.out.println(var.codeGet() + "/" + rs.getString("Password"));
+                if (var.codeGet().equals(rs.getString("Password"))) {
                     status = true;
                     u = this.findById(rs.getInt("Id"));
-                    
-                    
                     Session.setUser(u);
-                    
-                  
-
                 } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Email or Password incorrect");
+                    alert.showAndWait();
                     status = false;
                 }
-
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
+        System.out.println(status);
         return status;
     }
-         
-         public Person findById(int idconnected) {
+
+    public Person findById(int idconnected) {
         Person p = null;
         try {
             String req = "select  Id,Fullname,Email,Password,Avatar,Hasplaces,balance from Person where Id=? ";
-            PreparedStatement st = mc.prepareStatement(req);
-            st.setInt(1, idconnected);
-            ResultSet rs = st.executeQuery();
+            ste = mc.prepareStatement(req);
+            ste.setInt(1, idconnected);
+            ResultSet rs = ste.executeQuery();
             while (rs.next()) {
-                p = new Person(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getInt(5),rs.getBoolean(6), rs.getFloat(7));
+                p = new Person(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getFloat(7));
             }
         } catch (SQLException a) {
+            System.out.println(a.getMessage());
         }
         return p;
     }
-  public String checkRole(String email) {
+
+    public String checkRole(String email) {
         String default_return = "ND";
         try {
-            String req;
-            req = "select Role from person where Email=?";
-            PreparedStatement st = mc.prepareStatement(req);
-            st.setString(1, email);
-
-            ResultSet rs = st.executeQuery();
-
+            String req = "select Role from person where Email=?";
+            ste = mc.prepareStatement(req);
+            ste.setString(1, email);
+            ResultSet rs = ste.executeQuery();
             while (rs.next()) {
-
                 if (rs.getString(1).equals("Admin")) {
 
                     return "Admin";
                 } else if (rs.getString(1).equals("Owner")) {
                     return "Owner";
-                } else if (rs.getString(1).equals("Owner")) {
-                    return "Owner";
                 } else if (rs.getString(1).equals("Client")) {
                     return "Client";
-              }
-
+                }
             }
-
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
         return default_return;
+    }
+
+    public boolean Authentificationn(Person u) {
+        boolean status = false;
+        Md5 var = new Md5(u.getPassword());
+        try {
+            String req = "select * from Person where Email=?";
+            ste = mc.prepareStatement(req);
+            ste.setString(1, u.getEmail());
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                if (u.getPassword().equals(rs.getString("Password"))) {
+                    status = true;
+                    u = this.findById(rs.getInt("Id"));
+                    Session.setUser(u);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Email or Password incorrect");
+                    alert.showAndWait();
+                    status = false;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return status;
     }
 }

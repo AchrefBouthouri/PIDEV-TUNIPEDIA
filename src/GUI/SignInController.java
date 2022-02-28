@@ -29,32 +29,31 @@ import javafx.stage.Stage;
 public class SignInController implements Initializable {
 
     @FXML
-    private TextField login;
+    private TextField Email;
     @FXML
-    private TextField pass;
+    private TextField Password;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-//    @FXML
-//    private void SignIn(ActionEvent event) {
-//
-//        String email = Email.getText();
-//        String pwd = Password.getText();
-//         PersonService ps = new PersonService();
-//         Person p = ps.Connexion(email, pwd);
-//         System.out.println(p.toString());
-//         FXMLLoader loder = new FXMLLoader(getClass().getResource("Profile.fxml"));
-//        try {
-//            Parent root = loder.load();
-//            ProfileController pc = loder.getController();
-//            //ac.setList(ps.afficherPersonne().toString());
-//            Email.getScene().setRoot(root);
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    private void SignIn1(ActionEvent event) {
+
+        String email = Email.getText();
+        String pwd = Password.getText();
+         PersonService ps = new PersonService();
+         Person p = ps.Connexion(email, pwd);
+         System.out.println(p.toString());
+         FXMLLoader loder = new FXMLLoader(getClass().getResource("Profile.fxml"));
+        try {
+            Parent root = loder.load();
+            ProfileController pc = loder.getController();
+            //ac.setList(ps.afficherPersonne().toString());
+            Email.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
     
     
@@ -62,30 +61,20 @@ public class SignInController implements Initializable {
     private void SignIn(ActionEvent event) throws IOException {
         PersonService us = new PersonService();
         Person u = new Person();
-
-        u.setEmail(login.getText());
-        u.setPassword(pass.getText());
+        u.setEmail(Email.getText());
+        u.setPassword(Password.getText());
         int attempt = 1;
         if (us.Authentification(u)) {
-
-            /* if (txtUsername.getText().equals("admin")) {
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("Dashbord.fxml"));
-                Scene home_page_scene = new Scene(home_page_parent);
-                Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                app_stage.hide();
-                app_stage.setScene(home_page_scene);
-                app_stage.show();
-            }*/
             Parent home_page_parent;
-             
-            if (us.checkRole(login.getText()).equals("Admin") && attempt < 4) {
+            System.err.println(us.checkRole(Email.getText()));
+            if (us.checkRole(Email.getText()).equals("Admin") && attempt < 4) {
                Session.getFirstInstance(Session.getUser());
                // int ide = Session.getUser().getId();
-                    System.out.println(Session.getUser().getId());
+//                System.out.println(Session.getUser().getId());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Welcome Admin");
                 alert.showAndWait();
-                home_page_parent = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+                home_page_parent = FXMLLoader.load(getClass().getResource("Profile.fxml"));
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 app_stage.hide();
@@ -93,13 +82,13 @@ public class SignInController implements Initializable {
                 app_stage.show();
 
             } 
-        else    if (us.checkRole(login.getText()).equals("Client") && attempt < 4) {
+        else    if (us.checkRole(Email.getText()).equals("Client") && attempt < 4) {
                  //Session.getFirstInstance(Session.getUser());
                //  System.out.println(Session.getUser().id);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Accessed! as client");
                 alert.showAndWait();
-                home_page_parent = FXMLLoader.load(getClass().getResource("Client.fxml"));
+                home_page_parent = FXMLLoader.load(getClass().getResource("Profile.fxml"));
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 app_stage.hide();
@@ -107,7 +96,7 @@ public class SignInController implements Initializable {
                 app_stage.show();
 
             }
-            else if (us.checkRole(login.getText()).equals("Owner") && attempt < 4) {
+            else if (us.checkRole(Email.getText()).equals("Owner") && attempt < 4) {
                 Session.getFirstInstance(Session.getUser());
                 int ide = Session.getUser().getId();
                     System.out.println(ide);
@@ -118,7 +107,7 @@ public class SignInController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Welcome Owner "+Session.getUser().getFullName());
                 alert.showAndWait();
-                home_page_parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                home_page_parent = FXMLLoader.load(getClass().getResource("Profile.fxml"));
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 app_stage.hide();
@@ -137,8 +126,8 @@ public class SignInController implements Initializable {
                 alert.setHeaderText("attempt exceed!" + attempt);
                 alert.showAndWait();
 
-                pass.setDisable(true);
-                login.setEditable(false);
+                Password.setDisable(true);
+                Email.setEditable(false);
             }
 
             attempt++;

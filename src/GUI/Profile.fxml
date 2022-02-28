@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfileController">
    <left>
       <VBox prefHeight="200.0" prefWidth="300.0" spacing="15.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -20,17 +19,15 @@
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <ImageView fitHeight="150.0" styleClass="photo-profile"  fitWidth="200.0" pickOnBounds="true" preserveRatio="true" >
-                      <image >
-                              <Image  url="@Assets\photo.jpg"  />
-                      </image>
+                  <ImageView fx:id="avatar" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="photo-profile">
+
                   </ImageView>
-                  <Label prefHeight="21.0" prefWidth="126.0" text="Achref Bouthouri" textFill="WHITE">
+                  <Label fx:id="name" prefHeight="21.0" prefWidth="126.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" styleClass="button-profile" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" stylesheets="@styles.css" text="Edit Profile">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="button-profile" stylesheets="@styles.css" text="Edit Profile">
                   </Button>
                </children>
             </VBox>
@@ -57,27 +54,10 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Assets\Notification.png"/>
+                              <Image url="@Assets\Notification.png" />
                            </image>
                         </ImageView>
                         <Label prefHeight="17.0" prefWidth="148.0" text="Notifications" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets\Password.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="17.0" prefWidth="148.0" text="Password" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -102,6 +82,11 @@
                               <Insets left="15.0" />
                            </padding>
                         </Label>
+                        <Button mnemonicParsing="false" onAction="#setting" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #f0af4d;">
+                           <HBox.margin>
+                              <Insets left="-60.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
@@ -127,6 +112,6 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="Secondary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER" />
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

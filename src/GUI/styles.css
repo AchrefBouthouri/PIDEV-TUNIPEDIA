@@ -58,8 +58,18 @@
 
 .photo-profile{
     -fx-effect: dropshadow(three-pass-box, rgba(1,0,0,0.8), 10, 0, 0, 10);
-   
-    
-
-    
 }
+
+.input-profile{ 
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.btn-profile{
+    -fx-background-color: #04AA6D!important;
+    -fx-border-radius: 5px;
+    -fx-font-size: 17px;
+    -fx-font-family: 'Source Sans Pro', sans-serif;
+}
+

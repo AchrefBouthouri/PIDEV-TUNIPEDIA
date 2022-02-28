@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Services;
+import Entities.Attachement;
+import java.util.Date;
 
 import Entities.Person;
 import Entities.Place;
@@ -13,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class PlaceService {
     
 
     public void AjouterPlace(Place p, Person p1) {
-        String sql = "INSERT INTO Place(Name,Description,Adress,City,PostalCode,Latitude,Longitude,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Place(Name,Description,Adress,City,PostalCode,Latitude,Longitude,capacite,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement,prix) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         String sql1 = "Update Person Set Role='Owner' where id=?";
         try {
             // Insert Place
@@ -44,16 +47,18 @@ public class PlaceService {
             ste.setString(5, p.getPostalCode());
             ste.setString(6, p.getLatitude());
             ste.setString(7, p.getLongitude());
-            ste.setInt(8, p.getCategory_id());
-            ste.setInt(9, p.getEvaluation());
-            ste.setInt(10, p.getNotice());
-            ste.setBoolean(11, p.isStatus());
-            ste.setInt(12, p1.getId());
-            ste.setString(13, p.getType());
-            ste.setInt(14, p.getAttachement());
+            ste.setInt(8, p.getCapacite());
+            ste.setInt(9, p.getCategory_id());
+            ste.setInt(10, p.getEvaluation());
+            ste.setInt(11, p.getNotice());
+            ste.setBoolean(12, p.isStatus());
+            ste.setInt(13, p1.getId());
+            ste.setString(14, p.getType());
+            ste.setInt(15, p.getAttachement());
+            ste.setFloat(16, p.getPrix());
             mc.prepareStatement(sql);
             ste.executeUpdate();
-            System.out.println("Place ajoutÃ©e!");
+            System.out.println("Place ajoute!");
 
             // Update Preson Role
             if ((p1.getRole() != "Owner") && (p.getType() == "Private")) {
@@ -152,5 +157,93 @@ public class PlaceService {
         }
     }
      
+      public Place Selectplace(int idplace) {
+        Place pu = null;
+        try {
+            String req = "select  Id,Name,Description,Adress,City,PostalCode,Latitude,Longitude,capacite,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement,prix from place where Id=? ";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+              String TypeStr = rs.getString(15);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                pu = new Place(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10),rs.getInt(11),rs.getInt(12),rs.getBoolean(13),rs.getInt(14),TypeEnum,rs.getInt(16),rs.getFloat(17));
+               //             1 id, 2String name, 3String Description, 4String Adresse, 5String City, 6String 7PostalCode, 8String Latitude, 9String Longitude, ,10int category_id, 11int evaluation, 12int Notice, 13boolean Status, 14int CreatedBy, 15Type type,16 int attachement_id)
 
+            }
+        } catch (SQLException a) {
+        }
+        return pu;
+    }
+      public int getcount(int idplace,LocalDate date) {
+        int theCount = 0;
+        try {
+            String req = "select count(*) from reservation where Place_id=? and Date=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+            st.setDate(2,java.sql.Date.valueOf( date));
+            ResultSet rs = st.executeQuery();
+            if  (rs.next()) {
+            theCount = rs.getInt(1);
+          // System.out.println(theCount);
+}
+        } catch (SQLException a) {
+        }
+        return theCount;
+    }
+      public float gettheprice(int idplace) {
+        float balance = 0;
+        try {
+            String req = "select  prix from Place where Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+           
+            ResultSet rs = st.executeQuery();
+            if  (rs.next()) {
+            balance = rs.getInt(1);
+          // System.out.println(theCount);
+}
+        } catch (SQLException a) {
+        }
+        return balance;
+    }
+ public Attachement geturl(Place p) {
+       // List<Place> place = new ArrayList<>();
+       Attachement   A = new Attachement();
+        String sql = "SELECT a.Id,a.Path from place AS p INNER JOIN attachement AS a ON p.Attachement=a.Id where p.Attachement=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, p.getAttachement());
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                A= new Attachement (rs.getInt(1),rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return A;
+
+    }
+ 
+ public int gettheowner(int idplace) {
+        int idowner = 0;
+        try {
+            String req = "select  CreatedBy from Place where Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+           
+            ResultSet rs = st.executeQuery();
+            if  (rs.next()) {
+            idowner = rs.getInt(1);
+          // System.out.println(theCount);
+}
+        } catch (SQLException a) {
+        }
+        return idowner;
+    }
 }

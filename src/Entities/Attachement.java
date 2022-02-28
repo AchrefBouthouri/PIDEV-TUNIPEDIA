@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.net.URL;
+
 /**
  *
  * @author youss
@@ -18,6 +20,15 @@ public class Attachement {
         this.id = id;
         this.Name = Name;
         this.Path = Path;
+    }
+
+    public Attachement() {
+    }
+
+    public Attachement(int id, String Path) {
+        this.id = id;
+       // this.Name = Name;
+        this.Path = Path;//To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

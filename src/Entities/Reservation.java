@@ -6,6 +6,8 @@
 package Entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
+//import java.time.LocalDate;
 
 /**
  *
@@ -13,13 +15,14 @@ import java.sql.Date;
  */
 public class Reservation {
     private int id;
-    private Date date;
+    private LocalDate date;
     private boolean Validation;
-    private String CreatedBy;
+    private int CreatedBy;
     private int Place_id;
     private String Location;
+    private String FName;
 
-    public Reservation(int id, Date date, boolean Validation, String CreatedBy, int Place_id) {
+    public Reservation(int id, LocalDate date, boolean Validation, int CreatedBy, int Place_id) {
         this.id = id;
         this.date = date;
         this.Validation = Validation;
@@ -30,11 +33,26 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(LocalDate date, boolean Validation, int CreatedBy, int Place_id) {
+        this.date = date;
+        this.Validation = Validation;
+        this.CreatedBy = CreatedBy;
+        this.Place_id = Place_id;
+    }
+
+    public String getFName() {
+        return FName;
+    }
+
+    public void setFName(String FName) {
+        this.FName = FName;
+    }
+
     public int getId() {
         return id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -42,7 +60,7 @@ public class Reservation {
         return Validation;
     }
 
-    public String getCreatedBy() {
+    public int getCreatedBy() {
         return CreatedBy;
     }
 
@@ -68,7 +86,7 @@ public class Reservation {
         this.id = id;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -76,13 +94,13 @@ public class Reservation {
         this.Validation = Validation;
     }
 
-    public void setCreatedBy(String CreatedBy) {
+    public void setCreatedBy(int CreatedBy) {
         this.CreatedBy = CreatedBy;
     }
 
     @Override
     public String toString() {
-        return "***************" + "\nid=" + id + ",\nDate=" + date + ",\nValidation=" + Validation + ", \nCreatedBy=" + CreatedBy + ", \nLocation=" + Location + "\n****************";
+        return "***************" + "\nid=" + id + ",\nDate=" + date + ",\nValidation=" + Validation + ", \nCreatedBy=" + CreatedBy + ", \nLocation=" + Location + ", \nFName=" + FName + "\n****************";
     }
 
 

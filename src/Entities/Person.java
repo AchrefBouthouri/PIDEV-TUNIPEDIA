@@ -165,10 +165,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\n*******************" + "\nid=" + id + "\nFullName=" + FullName + "\nEmail=" + Email + "\nPassword=" + Password + "\nAvatar=" + Avatar + "\nHasplaces=" + Hasplaces + "\nCreatedAt=" + CreatedAt + "\nGender=" + gender + "\nNationalite=" + Nationalite + "\nRole=" + Role + "\nBalance="+ balance+"\n*******************";
+        return "\n*******************" + "\nid=" + id + "\nFullName=" + FullName + "\nEmail=" + Email + "\nPassword=" + Password + "\nAvatar=" + Avatar + "\nHasplaces=" + Hasplaces + "\nCreatedAt=" + CreatedAt + "\nGender=" + gender + "\nNationalite=" + Nationalite + "\nRole=" + Role + "\n*******************";
     }
 
    
     
    
 }
+

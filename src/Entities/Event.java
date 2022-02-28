@@ -4,12 +4,18 @@
  * and open the template in the editor.
  */
 package Entities;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
  *
- * @author Achref Bouthouri
+ * @author mac
  */
 public class Event {
     private int id;
@@ -124,5 +130,15 @@ public class Event {
     public String toString() {
         return "Event{" + "id=" + id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", Description=" + Description + ", CreatedBy=" + CreatedBy + ", Location=" + Location + '}';
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
+    
 }

@@ -28,9 +28,12 @@ public class Place {
     private Type type;
     private int attachement_id;
     private String category; 
+    private int capacite;
+    private float prix;
+   //private String Img;
     //private int[] evaluations;
 
-    public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id) {
+    public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude,int capacite ,int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id,float prix) {
         this.id = id;
         this.name = name;
         this.Description = Description;
@@ -39,6 +42,7 @@ public class Place {
         this.PostalCode = PostalCode;
         this.Latitude = Latitude;
         this.Longitude = Longitude;
+        this.capacite = capacite;
         this.category_id = category_id;
         this.evaluation = evaluation;
         this.Notice = Notice;
@@ -46,15 +50,57 @@ public class Place {
         this.CreatedBy = CreatedBy;
         this.type = type;
         this.attachement_id = attachement_id;
+        this.prix= prix;
     }
 
     public Place() {
        
     }
 
+    public Place(String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude,int capacite ,int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id,float prix)
+    {
+    this.name = name;
+        this.Description = Description;
+        this.Adresse = Adresse;
+        this.City = City;
+        this.PostalCode = PostalCode;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.capacite = capacite;
+        this.category_id = category_id;
+        this.evaluation = evaluation;
+        this.Notice = Notice;
+        this.Status = Status;
+        this.CreatedBy = CreatedBy;
+        this.type = type;
+        this.attachement_id = attachement_id;
+        this.prix= prix;
+   //private String Img;
+    //private int[] evaluations;
+}
+    
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public Place(int id, String name, String Description) {
+         this.id = id;
+        this.name = name;
+        this.Description = Description;
+    }
+
     public int getId() {
         return id;
     }
+
+    
+
+  
 
     public String getName() {
         return name;
@@ -113,6 +159,10 @@ public class Place {
         return attachement_id;
     }
 
+    public int getCapacite() {
+        return capacite;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -149,7 +199,7 @@ public class Place {
         this.Longitude = Longitude;
     }
 
-    public void setCategory_id(int category) {
+    public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
 
@@ -181,10 +231,23 @@ public class Place {
         this.attachement_id = attachement_id;
     }
 
-    @Override
-    public String toString() {
-        return "********************" + "\n id=" + id + ",\n name=" + name + ",\n Description=" + Description + ",\n Adresse=" + Adresse + ",\n City=" + City + ",\n PostalCode=" + PostalCode + ",\n Latitude=" + Latitude + ",\n Longitude=" + Longitude + ",\n category=" + category + ",\n evaluation=" + evaluation + ",\n Notice=" + Notice + ",\n Status=" + Status + ",\n CreatedBy=" + CreatedBy + ",\n type=" + type +  "\n************************";
+    public void setAttachement_id(int attachement_id) {
+        this.attachement_id = attachement_id;
     }
+
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
+    }
+
+    @Override
+
+
+    public String toString() {
+        return "Place{" + "id=" + id + ", name=" + name + ", Description=" + Description + ", Adresse=" + Adresse + ", City=" + City + ", PostalCode=" + PostalCode + ", Latitude=" + Latitude + ", Longitude=" + Longitude + ", category_id=" + category_id + ", evaluation=" + evaluation + ", Notice=" + Notice + ", Status=" + Status + ", CreatedBy=" + CreatedBy + ", type=" + type + ", attachement_id=" + attachement_id + ", category=" + category + ", capacite=" + capacite + '}';
+    }
+   
+
+
      
 }
 

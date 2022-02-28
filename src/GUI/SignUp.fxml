@@ -47,16 +47,18 @@
             <FontAwesomeIcon glyphName="KEY" layoutX="75.0" layoutY="176.0" />
             <FontAwesomeIcon glyphName="ENVELOPE" layoutX="75.0" layoutY="117.0" text="" />
             <Hyperlink layoutX="114.0" layoutY="396.0" text="Already a member? Sign in" />
-            <Button layoutX="379.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
-            <FontAwesomeIcon fill="#ffde8c" glyphName="CLOSE" layoutX="412.0" layoutY="31.0" />
+            <Button layoutX="420.0" layoutY="-1.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontAwesomeIcon fill="#ffde8c" glyphName="CLOSE" text="" />
+               </graphic></Button>
             <ComboBox fx:id="Nationality" editable="true" layoutX="109.0" layoutY="250.0" prefHeight="33.0" prefWidth="197.0" promptText="Nationality" style="-fx-border-width: 0.5px; -fx-border-radius: 50px; -fx-padding: 0px;" visibleRowCount="20" />
             <FontAwesomeIcon glyphName="GLOBE" layoutX="76.0" layoutY="271.0" />
-            <RadioButton fx:id="Male" layoutX="75.0" layoutY="214.0" mnemonicParsing="false" text="Male">
+            <RadioButton fx:id="rb1" layoutX="75.0" layoutY="214.0" mnemonicParsing="false" onAction="#GetGender" selected="true" text="Male">
                <toggleGroup>
                   <ToggleGroup fx:id="gen" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="Female" layoutX="242.0" layoutY="214.0" mnemonicParsing="false" text="Female" toggleGroup="$gen" />
+            <RadioButton fx:id="rb2" layoutX="242.0" layoutY="214.0" mnemonicParsing="false" onAction="#GetGender" text="Female" toggleGroup="$gen" />
          </children>
       </AnchorPane>
    </center>

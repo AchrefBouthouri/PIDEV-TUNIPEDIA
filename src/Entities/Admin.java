@@ -13,7 +13,7 @@ import java.sql.Date;
  * @author Wassym
  */
 public class Admin extends Person {
-        public Admin(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite) {
-        super(id, FullName, Email, Password, Avatar, Hasplaces, CreatedAt, gender, Nationalite,false, "Admin");
+        public Admin(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite, float balance) {
+        super(id, FullName, Email, Password, Avatar, Hasplaces, CreatedAt, gender, Nationalite,false, "Admin",balance);
     }
 }

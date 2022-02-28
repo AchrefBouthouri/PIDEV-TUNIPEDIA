@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import Tools.Session;
 
 /**
  *
@@ -118,16 +119,17 @@ public class PersonService {
         }
     }
       
-      public void UpdatePassword(String Password, int id){
-             String sql = "UPDATE  Person set Password=? where id=?";
+      
+      public void UpdateBalance(float balance, int id){
+             String sql = "UPDATE  Person set Balance=? where Id=?";
         try {
            ste = mc.prepareStatement(sql);
-              Md5 var = new Md5(Password);
+            //  Md5 var = new Md5(Password);
                 //System.out.println(var.codeGet());
-            ste.setString(1, var.codeGet());
+           ste.setFloat(1,balance);
            ste.setInt(2, id);
            ste.executeUpdate(); 
-            System.out.println("Mot de passe mis à jour!");
+            System.out.println("Balance mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
@@ -144,5 +146,84 @@ public class PersonService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());  
         }
+    }
+          public boolean Authentification(Person u) {
+        boolean status = false;
+        try {
+            String req = "select * from Person where Email=? ";
+            PreparedStatement st;
+            st = mc.prepareStatement(req);
+            st.setString(1, u.getEmail());
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                if (u.getPassword().equals(rs.getString("Password"))) {
+
+                    status = true;
+                    u = this.findById(rs.getInt("Id"));
+                    
+                    
+                    Session.setUser(u);
+                    
+                  
+
+                } else {
+                    status = false;
+                }
+
+            }
+        } catch (Exception ex) {
+        }
+        return status;
+    }
+    public Person findById(int idconnected) {
+        Person p = null;
+        try {
+            String req = "select  Id,Fullname,Email,Password,Avatar,Hasplaces,balance from Person where Id=? ";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idconnected);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                p = new Person(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),rs.getString(4),
+                        rs.getInt(5),
+                        rs.getBoolean(6),rs.getFloat(7));
+                        
+
+            }
+        } catch (SQLException a) {
+        }
+        return p;
+    }
+  public String checkRole(String email) {
+        String default_return = "ND";
+        try {
+            String req;
+            req = "select Role from person where Email=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setString(1, email);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                if (rs.getString(1).equals("Admin")) {
+
+                    return "Admin";
+                } else if (rs.getString(1).equals("Owner")) {
+                    return "Owner";
+                } else if (rs.getString(1).equals("Owner")) {
+                    return "Owner";
+                } else if (rs.getString(1).equals("Client")) {
+                    return "Client";
+              }
+
+            }
+
+        } catch (SQLException ex) {
+        }
+        return default_return;
     }
 }

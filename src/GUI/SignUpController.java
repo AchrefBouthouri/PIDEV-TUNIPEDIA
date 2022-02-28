@@ -47,9 +47,11 @@ public class SignUpController implements Initializable {
     ObservableList<String> list = FXCollections.observableArrayList(countries);
     @FXML
     ToggleGroup gen = new ToggleGroup();
-RadioButton rb1 = new RadioButton("Male");
-RadioButton rb2 = new RadioButton("Female");
-String Gend;
+    @FXML
+    private RadioButton rb1;
+    @FXML
+    private RadioButton rb2;
+    Gender Gend = Gender.Male;
        
     /**
      * Initializes the controller class.
@@ -58,27 +60,33 @@ String Gend;
     public void initialize(URL url, ResourceBundle rb) {
         Nationality.setItems(list);
          rb1.setToggleGroup(gen);
+         rb1.setSelected(true);
          rb2.setToggleGroup(gen);
     }    
-    public String getGender(ActionEvent event){
-    if(rb1.isSelected()){
-        Gend = rb1.getText();
-    }
-     if(rb2.isSelected()){
-        Gend = rb2.getText();
-    }
-     return Gend;
-    }
+    @FXML
+      private void exit(ActionEvent event){
+          System.exit(0);
+      }
+    @FXML
+      public void GetGender(ActionEvent event){
+          if(rb1.isSelected()){
+              Gend = Gender.Male;
+          }
+          if(rb2.isSelected()){
+              Gend = Gender.Female;
+          }
+      }
+ 
     @FXML
     private void Ajouter(ActionEvent event) {
         String Name = FullName.getText();
         String Mail = Email.getText();
         String pwd = Password.getText();
-       // Gender GenderEnum = Gender.valueOf(Gend);
         String Nation = Nationality.getValue();
-        Person p = new Client(0, Name, Mail, pwd, 0, false, new Date(122,2,2), Gender.Female, Nation);
+        Person p = new Client(0, Name, Mail, pwd, 0, false, new Date(122,2,2),Gend, Nation,1f);
          PersonService ps = new PersonService(); 
-        ps.AjouterPersonne(p);
+         System.out.println(p);
+       // ps.AjouterPersonne(p);
         /*FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherPersonne.fxml"));
         try {
             Parent root = loader.load();

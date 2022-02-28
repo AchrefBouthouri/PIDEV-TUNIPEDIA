@@ -24,11 +24,12 @@ public class Person {
     private String Nationalite;
     private boolean isPartner;
     private String Role;
+    private float balance;
 
     public Person() {
     }
 
-    public Person(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite, boolean isPartner, String Role) {
+    public Person(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite, boolean isPartner, String Role, float balance) {
         this.id = id;
         this.FullName = FullName;
         this.Email = Email;
@@ -40,10 +41,44 @@ public class Person {
         this.Nationalite = Nationalite;
         this.isPartner= isPartner;
         this.Role = Role;
+        this.balance = balance;
+    }
+    public Person(int id,String FullName, String Email, String Password, int Avatar, boolean Hasplaces,float balance) {
+        this.id= id;
+        this.FullName = FullName;
+        this.Email = Email;
+        this.Password = Password;
+        this.Avatar = Avatar;
+        this.Hasplaces = Hasplaces;
+        this.balance = balance;
     }
 
+    public Person(String FullName, String Email, String Password, int Avatar, boolean Hasplaces, float balance) {
+        this.FullName = FullName;
+        this.Email = Email;
+        this.Password = Password;
+        this.Avatar = Avatar;
+        this.Hasplaces = Hasplaces;
+        this.balance = balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
     public int getId() {
         return id;
+    }
+
+    public boolean isIsPartner() {
+        return isPartner;
+    }
+
+    public boolean isHasplaces() {
+        return Hasplaces;
+    }
+
+    public float getBalance() {
+        return balance;
     }
 
     public void setId(int id) {

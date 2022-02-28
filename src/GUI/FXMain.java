@@ -23,16 +23,29 @@ import javafx.stage.StageStyle;
  * @author Wassym
  */
 public class FXMain extends Application {
+    private double xOffset = 0 ;
+    private double yOffset = 0 ;
 
     @Override
     public void start(Stage primaryStage) {
        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(root);
           //  scene.getStylesheets().add(getClass().getResource("Signup.css").toExternalForm());
           //  primaryStage.setTitle("Ajout d'un personne");
-     
+          primaryStage.initStyle(StageStyle.DECORATED.UNDECORATED);
+         root.setOnMousePressed((MouseEvent event) -> {
+             xOffset = event.getSceneX();
+             yOffset = event.getSceneY();
+            });
+         
+            root.setOnMouseDragged((MouseEvent event) -> {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            });
+            
+            
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

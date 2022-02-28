@@ -3,15 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Enum/Gender.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Services/PersonService.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Tools/Md5.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Tools/ConnexionDB.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Entities/Place.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Services/PlaceService.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Tests/Test.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Entities/Person.java</file>
-            <file>file:/C:/Users/Achref%20Bouthouri/Documents/NetBeansProjects/TuniPedia/src/Enum/Type.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Services/PersonService.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/AffichageplaceController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/Home.fxml</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/CardController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/Card.fxml</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Tests/Test.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Entities/Person.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Services/OfferService.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/Djem.jpg</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/YourPlacesController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/AddEventController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Entities/Place.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/AddPlaceController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Services/PlaceService.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/FXMain.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/GUI/HomeController.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Entities/Client.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Tools/Session.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Entities/Event.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Services/EventService.java</file>
+            <file>file:/C:/Users/21627/Documents/TUNIPEDIA1/src/Entities/Admin.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import Entities.Event;
+import Services.EventService;
+import Tools.Session;
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,14 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import Entities.Event;
-import Services.EventService;
-import Tools.Session;
 
 /**
  * FXML Controller class
  *
- * @author 21627
+ * @author Achref Bouthouri
  */
 public class AddEventController implements Initializable {
 
@@ -65,3 +64,4 @@ public class AddEventController implements Initializable {
     
     
 }
+

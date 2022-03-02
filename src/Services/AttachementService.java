@@ -6,12 +6,14 @@
 package Services;
 
 import Entities.Attachement;
+import Entities.Person;
+import Enum.Gender;
 import Tools.ConnexionDB;
+import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class AttachementService {
         conn = ConnexionDB.getInstance().getCnx();
     }
 
-    public void ajouterAttachement(Attachement a) {
+      public int ajouterAttachement(Attachement a) {
         int id = 0;
         String sql = "insert into attachement(name,path) Values(?,?)";
         try {
@@ -38,37 +40,19 @@ public class AttachementService {
             ste.executeUpdate();
             System.out.println("Attachement Ajoutée");
             ResultSet rs=ste.getGeneratedKeys();
-           
+           if(rs.next()){
+                  id=rs.getInt(1);
+                         }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-    }
-      public List<Attachement> afficherAttachement(){
-        List<Attachement> Attachement = new ArrayList<>();
-        String sql = "SELECT * from Attachement";
-        try {
-            ste =conn.prepareStatement(sql);
-            ResultSet rs=ste.executeQuery();
-            while(rs.next()){
-            Attachement a = new Attachement();
-            a.setId(rs.getInt(1));
-           a.setName(rs.getString(2));
-            a.setPath(rs.getString(3));
-           
-            Attachement.add(a);
-            }
-        } catch (SQLException ex) {
-           System.out.println(ex.getMessage());
-        }
-       // System.out.println(personnes);
-         return Attachement;
+       return id;
     }
     
         public void SupprimerAttachement(Attachement a){
              String sql = "delete from attachement where Id=?";
         try {
-           ste = conn.prepareStatement(sql);
+           ste = conn.prepareStatement(sql , Statement.RETURN_GENERATED_KEYS);
            ste.setInt(1, a.getId());
            ste.executeUpdate(); 
             System.out.println("Attachement Supprimée!");
@@ -77,12 +61,29 @@ public class AttachementService {
         }
     }
         
-        public Attachement findById(int id) {
+        
+   public Attachement findById(int id) {
         Attachement a = null;
         try {
             String req = "select * from Attachement where id=? ";
             ste = conn.prepareStatement(req);
             ste.setInt(1, id);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                a = new Attachement(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return a;
+    }
+
+      public Attachement findByPath(String Path) {
+        Attachement a = null;
+        try {
+            String req = "select * from Attachement where Path=? ";
+            ste = conn.prepareStatement(req);
+            ste.setString(1, Path);
             ResultSet rs = ste.executeQuery();
             while (rs.next()) {
                 a = new Attachement(rs.getInt(1), rs.getString(2), rs.getString(3));

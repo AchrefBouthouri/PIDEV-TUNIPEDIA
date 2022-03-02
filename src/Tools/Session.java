@@ -1,20 +1,17 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Tools;
-//
-///**
 
 import Entities.Person;
-import java.util.HashMap;
-import java.util.Map;
 import Services.PersonService;
 
-
-
-
-
-// *
-// * @author USER
-// */
+/**
+ *
+ * @author Achref Bouthouri
+ */
 public class Session {
      private static final PersonService fs = new PersonService();
     
@@ -69,10 +66,5 @@ public class Session {
     public static void setUser(Person user) {
         Session.user = user;
     }
-
-
-   
- 
-    
 
 }

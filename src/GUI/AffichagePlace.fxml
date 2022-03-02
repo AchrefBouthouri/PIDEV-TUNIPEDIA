@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageplaceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichagePlaceController">
    <top>
       <HBox prefHeight="49.0" prefWidth="1281.0" spacing="20.0" style="-fx-background-color: #ffde8c;" BorderPane.alignment="CENTER">
          <children>
@@ -92,7 +92,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Pane prefHeight="328.0" prefWidth="175.0" />
-                  <ImageView fitHeight="328.0" fitWidth="636.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image" fitHeight="328.0" fitWidth="636.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Djem.jpg" />
                      </image>

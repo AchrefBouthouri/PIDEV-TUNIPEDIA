@@ -16,11 +16,11 @@ public class Evaluation {
     private Date CreatedAt;
     private int Notice;
     private String Comment;
-    private int CreatedBy;
+    private String CreatedBy;
     private String Location;
     private int place_id;
 
-    public Evaluation(int id, Date CreatedAt, int Notice, String Comment,int CreatedBy,int place_id) {
+    public Evaluation(int id, Date CreatedAt, int Notice, String Comment,String CreatedBy,int place_id) {
         this.id = id;
         this.CreatedAt = CreatedAt;
         this.Notice = Notice;
@@ -50,7 +50,7 @@ public class Evaluation {
         return Comment;
     }
 
-    public  int getCreatedBy() {
+    public  String getCreatedBy() {
         return CreatedBy;
     }
 
@@ -74,7 +74,7 @@ public class Evaluation {
         this.Comment = Comment;
     }
 
-    public void setCreatedBy(int CreatedBy) {
+    public void setCreatedBy(String CreatedBy) {
         this.CreatedBy = CreatedBy;
     }
 

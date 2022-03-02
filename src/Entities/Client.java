@@ -15,7 +15,7 @@ import java.sql.Date;
 
 public class Client extends Person{
 
-    public Client(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite,float balance) {
+    public Client(int id, String FullName, String Email, String Password, int Avatar, boolean Hasplaces, Date CreatedAt, Gender gender, String Nationalite, float balance) {
         super(id, FullName, Email, Password, Avatar, Hasplaces, CreatedAt, gender, Nationalite,false, "Client",balance);
     }
     

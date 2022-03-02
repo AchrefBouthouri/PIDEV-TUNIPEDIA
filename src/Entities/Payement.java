@@ -1,9 +1,18 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Entities;
 
 import java.sql.Date;
 
+/**
+ *
+ * @author Achref Bouthouri
+ */
 public class Payement {
+
     private int id;
     private Date date;
     private String Description;
@@ -16,13 +25,13 @@ public class Payement {
     public Payement() {
     }
 
-    public Payement(String Description, float Montant, int CreatedBy, int id_Offer,int sendtoid,int idreservation) {
-       
+    public Payement(String Description, float Montant, int CreatedBy, int id_Offer, int sendtoid, int idreservation) {
+
         this.Description = Description;
         this.Montant = Montant;
-        this.CreatedBy = CreatedBy;   
+        this.CreatedBy = CreatedBy;
         this.id_Offer = id_Offer;
-         this.sendtoid = sendtoid;
+        this.sendtoid = sendtoid;
         this.idreservation = idreservation;
     }
 
@@ -42,8 +51,6 @@ public class Payement {
         this.idreservation = idreservation;
     }
 
-   
-    
     public int getId() {
         return id;
     }
@@ -60,7 +67,6 @@ public class Payement {
         return Montant;
     }
 
-   
     public int getCreatedBy() {
         return CreatedBy;
     }
@@ -97,9 +103,5 @@ public class Payement {
     public String toString() {
         return "Payment{" + "id=" + id + ", date=" + date + ", Description=" + Description + ", Montant=" + Montant + ", CreatedBy=" + CreatedBy + ", id_Offer=" + id_Offer + '}';
     }
-    
-    
-    
-    
-}
 
+}

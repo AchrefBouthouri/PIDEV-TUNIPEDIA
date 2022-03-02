@@ -5,15 +5,14 @@
  */
 package Entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
-//import java.time.LocalDate;
 
 /**
  *
  * @author Wassym
  */
 public class Reservation {
+
     private int id;
     private LocalDate date;
     private boolean Validation;
@@ -30,6 +29,14 @@ public class Reservation {
         this.Place_id = Place_id;
     }
 
+    public String getFName() {
+        return FName;
+    }
+
+    public void setFName(String FName) {
+        this.FName = FName;
+    }
+
     public Reservation() {
     }
 
@@ -40,13 +47,6 @@ public class Reservation {
         this.Place_id = Place_id;
     }
 
-    public String getFName() {
-        return FName;
-    }
-
-    public void setFName(String FName) {
-        this.FName = FName;
-    }
 
     public int getId() {
         return id;
@@ -76,12 +76,10 @@ public class Reservation {
         this.Location = Location;
     }
 
-
-
     public void setPlace_id(int Place_id) {
         this.Place_id = Place_id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
@@ -103,9 +101,4 @@ public class Reservation {
         return "***************" + "\nid=" + id + ",\nDate=" + date + ",\nValidation=" + Validation + ", \nCreatedBy=" + CreatedBy + ", \nLocation=" + Location + ", \nFName=" + FName + "\n****************";
     }
 
-
-
-    
-    
 }
-

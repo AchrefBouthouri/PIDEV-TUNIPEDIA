@@ -15,7 +15,7 @@ import java.sql.Statement;
  * @author Achref Bouthouri
  */
 public class ConnexionDB {
-     public   String url="jdbc:mysql://localhost:3306/tunipedia-1";
+     public   String url="jdbc:mysql://localhost:3306/tunipedia";
     public   String user="root";
     public   String pwd="";
     public   Statement ste; 

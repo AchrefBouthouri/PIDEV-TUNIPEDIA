@@ -5,69 +5,111 @@
  */
 package GUI;
 
-import Entities.Client;
+import Entities.Attachement;
+import Entities.Category;
 import Entities.Person;
 import Entities.Place;
-import Enum.Gender;
 import Enum.Type;
+import Services.AttachementService;
+import Services.CategoryService;
+import Services.PersonService;
 import Services.PlaceService;
 import Tools.Session;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
  *
- * @author Achref Bouthouri
+ * @author Wassym
  */
 public class AddPlaceController implements Initializable {
 
+    @FXML
     private TextField Name;
+    @FXML
     private TextArea Description;
+    @FXML
     private TextField Adress;
 
+    @FXML
     private TextField City;
 
+    @FXML
     private TextField PostalCode;
 
+    @FXML
     private TextField Longitude;
 
+    @FXML
     private TextField Latitude;
+    @FXML
     private RadioButton Public;
+    @FXML
     private ToggleGroup Typ;
+    @FXML
     private RadioButton Private;
-    Type tp = Type.Public;
-    private Label connecteduser;
+    Type tp;
+    int idA,idC; 
     @FXML
-    private DatePicker datedebut;
+    private Label ConnectedUsr;
     @FXML
-    private DatePicker datefin;
+    private ImageView ConnectedAvtr;
+    PersonService ps1 = new PersonService();
     @FXML
-    private TextField capacite;
+    private ComboBox<?> Category;
     @FXML
-    private TextField prix;
+    private TextField imagepath;
+    
+    CategoryService cs = new CategoryService();
     @FXML
-    private TextField description;
+    private ImageView img;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      connecteduser.setText(Session.getUser().getFullName());
+        idC = 0;
+        tp = Type.Public;
+      ConnectedUsr.setText(Session.getUser().getFullName());
+              Person p1 = ps1.findById((Session.getUser().getId()));
+        AttachementService as = new AttachementService();
+        Attachement a = as.findById(p1.getAvatar());
+        //System.out.println((Session.getUser().getAvatar()));
+        File file = new File(a.getPath());
+        Image image = new Image(file.toURI().toString());
+        ConnectedAvtr.setImage(image);
          Public.setToggleGroup(Typ);
          Public.setSelected(true);
          Private.setToggleGroup(Typ);
+         ObservableList list = FXCollections.observableArrayList();
+         cs.afficherCategory().forEach((c) -> {
+             list.add(c.getName());
+        });
+         Category.setItems(list);
     }    
+    @FXML
       public void GetType(ActionEvent event){
           if(Public.isSelected()){
               tp = Type.Public;
@@ -75,8 +117,32 @@ public class AddPlaceController implements Initializable {
           if(Private.isSelected()){
               tp = Type.Private;
           }
-      }
-    private void AddPlace(ActionEvent event) {
+  }
+         @FXML
+    private void Select(ActionEvent event) {
+        String s = Category.getSelectionModel().getSelectedItem().toString();
+        cs.afficherCategory().stream().filter((c) -> (s.equals(c.getName()))).forEachOrdered((c) -> {
+            idC = c.getId();
+        });       
+    }
+         @FXML  
+    void Upload(MouseEvent event) {
+JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        Attachement a1 = new Attachement();
+        AttachementService as = new AttachementService();
+        a1.setName("");
+        a1.setPath(filename);
+       idA =  as.ajouterAttachement(a1);
+       Image image = new Image(f.toURI().toString());
+        img.setImage(image);
+       imagepath.setText(filename);
+        
+    }
+        @FXML
+          void AddPlace(ActionEvent event) {
         String PName = Name.getText();
         String Desc = Description.getText();
         String Add = Adress.getText();
@@ -84,16 +150,57 @@ public class AddPlaceController implements Initializable {
         String PC = PostalCode.getText();
         String lon = Longitude.getText();
         String lat = Latitude.getText();
-        Place p = new Place(0, PName, Desc, Add, Cit, PC, lon, lat, 0, 0, 0, true, 0, tp, 0);
+                     if (Name.getText().isEmpty()
+                || Description.getText().isEmpty()
+                || City.getText().isEmpty()
+               ) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Veuillez remplir tous les champs");
+            alert.showAndWait();
+        }
+           else if (idC == 0) {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setContentText("Veuillez choisir une catégorie");
+            alert1.showAndWait();
+        }
+           else  if (imagepath.getText().isEmpty()) {
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setContentText("Veuillez saisir un attachement");
+            alert2.showAndWait();
+        }
+           else{
+        Place p = new Place(0, PName, Desc, Add, Cit, PC, lon, lat, idC, 0, 0, false, Session.getUser().getId(), tp, idA);
           PlaceService ps = new PlaceService(); 
-          Person p1 = new Client(0, PName, lat, Add, 0, true, new Date(122,12,1), Gender.Female, PName,2f);
-         //System.out.println(p);
-         ps.AjouterPlace(p,p1);
-
+         ps.AjouterPlace(p,Session.getUser());
+         Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setContentText("Votre demande est en cours de traitement");
+            alert3.showAndWait();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        try {
+            Parent root = loader.load();
+            HomeController hc = loader.getController();
+           Name.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+           }
     }
-
     @FXML
-    private void AddEvent(ActionEvent event) {
+    void BackHome(MouseEvent event) {
+   FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        try {
+            Parent root = loader.load();
+            HomeController hc = loader.getController();
+           Name.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
     }
+
+
+
+ 
+
+
 }
 

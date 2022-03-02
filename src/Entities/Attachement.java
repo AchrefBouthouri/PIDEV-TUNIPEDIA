@@ -20,6 +20,13 @@ public class Attachement {
         this.Path = Path;
     }
 
+      public Attachement() {
+    }
+
+    public Attachement(int id, String Path) {
+        this.id = id;
+        this.Path = Path;}
+    
     public int getId() {
         return id;
     }

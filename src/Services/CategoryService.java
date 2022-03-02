@@ -100,5 +100,21 @@ public class CategoryService {
         }
          return categorys;
     }
+    
+    public List<String> getAllCategoryName() {
+        List<String> categoryName = new ArrayList<>();
+        String sql = "select Name from Category";
+        try {
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                categoryName.add(rs.getString("Name"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return categoryName;
+    }
+
 
 }

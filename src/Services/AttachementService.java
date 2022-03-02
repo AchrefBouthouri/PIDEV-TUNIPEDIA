@@ -9,6 +9,7 @@ import Entities.Attachement;
 import Entities.Person;
 import Enum.Gender;
 import Tools.ConnexionDB;
+import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,24 +30,29 @@ public class AttachementService {
         conn = ConnexionDB.getInstance().getCnx();
     }
 
-    public void ajouterAttachement(Attachement a) {
+      public int ajouterAttachement(Attachement a) {
+        int id = 0;
         String sql = "insert into attachement(name,path) Values(?,?)";
         try {
-            ste = conn.prepareStatement(sql);
+            ste = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ste.setString(1, a.getName());
             ste.setString(2, a.getPath());
             ste.executeUpdate();
             System.out.println("Attachement Ajoutée");
+            ResultSet rs=ste.getGeneratedKeys();
+           if(rs.next()){
+                  id=rs.getInt(1);
+                         }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+       return id;
     }
     
         public void SupprimerAttachement(Attachement a){
              String sql = "delete from attachement where Id=?";
         try {
-           ste = conn.prepareStatement(sql);
+           ste = conn.prepareStatement(sql , Statement.RETURN_GENERATED_KEYS);
            ste.setInt(1, a.getId());
            ste.executeUpdate(); 
             System.out.println("Attachement Supprimée!");

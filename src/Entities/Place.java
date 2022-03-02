@@ -29,7 +29,9 @@ public class Place {
     private Type type;
     private int attachement_id;
     private String category;
-    private String Img;
+    private int capacite;
+    private float prix;
+    //private String Img;
     //private int[] evaluations;
 
     public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id) {
@@ -50,20 +52,53 @@ public class Place {
         this.attachement_id = attachement_id;
     }
 
+    public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int capacite, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id, float prix) {
+        this.id = id;
+        this.name = name;
+        this.Description = Description;
+        this.Adresse = Adresse;
+        this.City = City;
+        this.PostalCode = PostalCode;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.capacite = capacite;
+        this.category_id = category_id;
+        this.evaluation = evaluation;
+        this.Notice = Notice;
+        this.Status = Status;
+        this.CreatedBy = CreatedBy;
+        this.type = type;
+        this.attachement_id = attachement_id;
+        this.prix = prix;
+    }
+
+    public Place(String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int capacite, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id, float prix) {
+        this.name = name;
+        this.Description = Description;
+        this.Adresse = Adresse;
+        this.City = City;
+        this.PostalCode = PostalCode;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.capacite = capacite;
+        this.category_id = category_id;
+        this.evaluation = evaluation;
+        this.Notice = Notice;
+        this.Status = Status;
+        this.CreatedBy = CreatedBy;
+        this.type = type;
+        this.attachement_id = attachement_id;
+        this.prix = prix;
+        //private String Img;
+        //private int[] evaluations;
+    }
+
     public Place() {
 
     }
 
     public int getId() {
         return id;
-    }
-
-    public String getImg() {
-        return Img;
-    }
-
-    public void setImg(String Img) {
-        this.Img = Img;
     }
 
     public String getName() {
@@ -120,6 +155,14 @@ public class Place {
 
     public int getAttachement() {
         return attachement_id;
+    }
+
+    public int getCapacite() {
+        return capacite;
+    }
+
+    public float getPrix() {
+        return prix;
     }
 
     public String getCategory() {
@@ -186,8 +229,16 @@ public class Place {
         this.type = type;
     }
 
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
     public void setAttachement(int attachement_id) {
         this.attachement_id = attachement_id;
+    }
+
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
     }
 
     @Override

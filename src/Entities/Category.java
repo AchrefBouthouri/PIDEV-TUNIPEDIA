@@ -49,7 +49,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" + "id=" + id + ", Name=" + Name + ", attachement=" + attachement + '}';
+        return "Category{" + "id=" + id + ", Name=" + Name + ", attachement=" + attachement + "}";
     }
     
 }

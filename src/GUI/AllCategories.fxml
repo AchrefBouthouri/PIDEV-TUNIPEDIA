@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AllCategoriesController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="570.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="65.0" prefWidth="491.0" style="-fx-background-color: e3e4e6;">
+               <children>
+                  <Label prefHeight="65.0" prefWidth="221.0" style="-fx-background-color: f0af4d;" text="Liste Categories" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tabc" onMouseClicked="#getCategorie" prefHeight="198.0" prefWidth="526.0">
+              <columns>
+                <TableColumn fx:id="namecat" prefWidth="454.2857447862625" text="Name" />
+                <TableColumn fx:id="attachementcat" prefWidth="83.99993896484375" text="Attachement" />
+              </columns>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="30.0" right="30.0" top="15.0" />
+               </VBox.margin>
+            </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="30.0" top="15.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@Assets/photo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="180.0" prefWidth="255.0">
+                     <children>
+                        <HBox prefHeight="229.0" prefWidth="266.0">
+                           <children>
+                              <VBox prefHeight="165.0" prefWidth="226.0">
+                                 <children>
+                                    <Label text="ID" />
+                                    <TextField fx:id="id" disable="true" prefHeight="25.0" prefWidth="219.0" />
+                                    <Label text="Name" />
+                                    <TextField fx:id="name" prefHeight="25.0" prefWidth="219.0" />
+                                    <Label text="Attachement" />
+                                    <TextField fx:id="attachement" prefHeight="25.0" prefWidth="219.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#Upload" prefHeight="25.0" prefWidth="142.0" style="-fx-background-color: f0af4d;" text="Upload" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="150.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Cancel" prefHeight="31.0" prefWidth="59.0" style="-fx-background-color: bababa;" text="Cancel" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Delete" prefHeight="30.0" prefWidth="61.0" style="-fx-background-color: cf0c0c;" text="Delete" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Update" prefHeight="31.0" prefWidth="62.0" style="-fx-background-color: #1a73e8;" text="Update" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

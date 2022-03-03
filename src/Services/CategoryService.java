@@ -69,12 +69,12 @@ public class CategoryService {
     }
     
     
-    public void UpdateAttachement(Attachement a, Category c) {
+    public void UpdateAttachement(Attachement a, int c) {
         String sql = "UPDATE  Category set attachement=? where id=?";
         try {
             ste = mc.prepareStatement(sql);
             ste.setInt(1, a.getId());
-            ste.setInt(2, c.getId());
+            ste.setInt(2, c);
             ste.executeUpdate();
             System.out.println("Category mis à jour!");
         } catch (SQLException ex) {
@@ -100,5 +100,39 @@ public class CategoryService {
         }
          return categorys;
     }
+    
+    public List<Category> afficherCategory1(){
+        List<Category> categorys = new ArrayList<>();
+        String sql = "SELECT c.name,c.attachement from Category as c INNER JOIN Attachement as a on (c.attachement=a.id)";
+        try {
+            ste =mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+            Category r = new Category();
+            r.setName(rs.getString("Name"));
+            r.setAttachement(rs.getInt(""));
+            categorys.add(r);
+            }
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+         return categorys;
+    }
+    
+    public List<String> getAllCategoryName() {
+        List<String> categoryName = new ArrayList<>();
+        String sql = "select Name from Category";
+        try {
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                categoryName.add(rs.getString("Name"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return categoryName;
+    }
+
 
 }

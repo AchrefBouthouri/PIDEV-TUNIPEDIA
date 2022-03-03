@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Attachement;
 import Entities.Person;
 import Entities.Place;
 import Enum.Type;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,6 @@ public class PlaceService {
     public PlaceService() {
         mc = ConnexionDB.getInstance().getCnx();
     }
-    
 
     public void AjouterPlace(Place p, Person p1) {
         String sql = "INSERT INTO Place(Name,Description,Adress,City,PostalCode,Latitude,Longitude,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -101,56 +102,146 @@ public class PlaceService {
         return place;
 
     }
-    
-    public void SupprimerPlace(int id){
-             String sql = "delete from Place where Id=?";
+
+    public void SupprimerPlace(int id) {
+        String sql = "delete from Place where Id=?";
         try {
-           ste = mc.prepareStatement(sql);
-           ste.setInt(1, id);
-           ste.executeUpdate(); 
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, id);
+            ste.executeUpdate();
             System.out.println("Place SupprimÃ©e!");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());  
+            System.out.println(ex.getMessage());
         }
     }
-    
-    public void UpdateNamePlace(String Name, int id){
-             String sql = "UPDATE  Place set Name=? where id=?";
+
+    public void UpdateNamePlace(String Name, int id) {
+        String sql = "UPDATE  Place set Name=? where id=?";
         try {
-           ste = mc.prepareStatement(sql);
-           ste.setString(1, Name);
-           ste.setInt(2, id);
-           ste.executeUpdate(); 
+            ste = mc.prepareStatement(sql);
+            ste.setString(1, Name);
+            ste.setInt(2, id);
+            ste.executeUpdate();
             System.out.println("le Nom est mis Ã  jour!");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());  
+            System.out.println(ex.getMessage());
         }
     }
-      public void UpdateAdressPlace(String Adress, Place p){
-             String sql = "UPDATE  Place set Adress=? where id=?";
+
+    public void UpdateAdressPlace(String Adress, Place p) {
+        String sql = "UPDATE  Place set Adress=? where id=?";
         try {
-           ste = mc.prepareStatement(sql);
-           ste.setString(1, Adress);
-           ste.setInt(2, p.getId());
-           ste.executeUpdate(); 
+            ste = mc.prepareStatement(sql);
+            ste.setString(1, Adress);
+            ste.setInt(2, p.getId());
+            ste.executeUpdate();
             System.out.println("Adresse mise Ã  jour!");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());  
+            System.out.println(ex.getMessage());
         }
     }
-      
-      public void UpdatetypePlace(String type, Place p){
-             String sql = "UPDATE  Place set Type=? where Id=?";
+
+    public void UpdatetypePlace(String type, Place p) {
+        String sql = "UPDATE  Place set Type=? where Id=?";
         try {
-           ste = mc.prepareStatement(sql);
-           ste.setString(1, type);
-           ste.setInt(2, p.getId());
-           ste.executeUpdate(); 
+            ste = mc.prepareStatement(sql);
+            ste.setString(1, type);
+            ste.setInt(2, p.getId());
+            ste.executeUpdate();
             System.out.println("Type mis Ã  jour!");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());  
+            System.out.println(ex.getMessage());
         }
     }
-     
 
+    public Place Selectplace(int idplace) {
+        Place pu = null;
+        try {
+            String req = "select  Id,Name,Description,Adress,City,PostalCode,Latitude,Longitude,capacite,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement from place where Id=? ";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String TypeStr = rs.getString(15);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                pu = new Place(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getBoolean(13), rs.getInt(14), TypeEnum, rs.getInt(16), 20f);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return pu;
+    }
+
+    public int getcount(int idplace, LocalDate date) {
+        int theCount = 0;
+        try {
+            String req = "select count(*) from reservation where Place_id=? and Date=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+            st.setDate(2, java.sql.Date.valueOf(date));
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                theCount = rs.getInt(1);
+                // System.out.println(theCount);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return theCount;
+    }
+
+    public float gettheprice(int idplace) {
+        float balance = 0;
+        try {
+            String req = "select  prix from Place where Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                balance = rs.getInt(1);
+                // System.out.println(theCount);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return balance;
+    }
+
+    public Attachement geturl(Place p) {
+        // List<Place> place = new ArrayList<>();
+        Attachement A = new Attachement();
+        String sql = "SELECT a.Id,a.Path from place AS p INNER JOIN attachement AS a ON p.Attachement=a.Id where p.Attachement=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, p.getAttachement());
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                A = new Attachement(rs.getInt(1), rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return A;
+
+    }
+
+    public int gettheowner(int idplace) {
+        int idowner = 0;
+        try {
+            String req = "select  CreatedBy from Place where Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idplace);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                idowner = rs.getInt(1);
+                // System.out.println(theCount);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return idowner;
+    }
 }

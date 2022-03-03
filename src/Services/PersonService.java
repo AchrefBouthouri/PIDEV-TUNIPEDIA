@@ -171,6 +171,38 @@ public class PersonService {
             System.out.println(ex.getMessage());
         }
     }
+    
+        public Person getPerson(int id) {
+        String sql = "select¨* from Person where id=?";
+        Person p = new Person();
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, id);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                //p.setId(rs.getInt(1));
+                //if (var.codeGet().equals(rs.getString(4))) {
+                p.setId(rs.getInt(1));
+                p.setFullName(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setPassword(rs.getString(4));
+                p.setAvatar(rs.getInt(5));
+                p.setHasplaces(rs.getBoolean(6));
+                //String GenderStr = rs.getString(7);
+                //Gender GenderEnum = Gender.valueOf(GenderStr);
+                // p.setGender(GenderEnum);
+                System.out.println(rs.getDate(7));
+                p.setCreatedAt(rs.getDate(7));
+                // p.setNationalite(rs.getString(9));
+                p.setIsPartner(rs.getBoolean(8));
+                p.setRole(rs.getString(9));
+            }
+            System.out.println("Personne Recuperer!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+    }
 
     public List<Person> afficherPerson() {
         List<Person> personnes = new ArrayList<>();
@@ -293,13 +325,15 @@ public class PersonService {
             ste.setString(1, u.getEmail());
             ResultSet rs = ste.executeQuery();
             while (rs.next()) {
-                System.out.println(var.codeGet() + "/" + rs.getString("Password"));
-                if (var.codeGet().equals(rs.getString("Password"))) {
+                //System.out.println(var.codeGet() + "/" + rs.getString("Password"));
+                System.out.println(u.getEmail().equals(rs.getString("Email")));
+                System.out.println(u.getEmail()+"/"+rs.getString("Email"));
+                if (var.codeGet().equals(rs.getString("Password"))  || u.getEmail().equals(rs.getString("Email"))) {
                     status = true;
                     u = this.findById(rs.getInt("Id"));
                     Session.setUser(u);
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Email or Password incorrect");
                     alert.showAndWait();
                     status = false;
@@ -375,5 +409,21 @@ public class PersonService {
             System.out.println(ex.getMessage());
         }
         return status;
+    }
+    
+          
+      public void UpdateBalance(float balance, int id){
+             String sql = "UPDATE  Person set Balance=? where Id=?";
+        try {
+           ste = mc.prepareStatement(sql);
+            //  Md5 var = new Md5(Password);
+                //System.out.println(var.codeGet());
+           ste.setFloat(1,balance);
+           ste.setInt(2, id);
+           ste.executeUpdate(); 
+            System.out.println("Balance mis à jour!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());  
+        }
     }
 }

@@ -5,9 +5,14 @@
  */
 package GUI;
 
+import Entities.Attachement;
+import Entities.Person;
 import Entities.Place;
+import Services.AttachementService;
+import Services.PersonService;
 import Services.PlaceService;
 import Tools.Session;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -48,13 +54,22 @@ public class YourPlacesController implements Initializable {
     @FXML
     private TextField SearchBar;
     int column,row;
+    PersonService ps1 = new PersonService();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        ConnectedUsr.setText(Session.getUser().getFullName());
+         ConnectedUsr.setText(Session.getUser().getFullName());
+        Person p1 = ps1.findById((Session.getUser().getId()));
+        AttachementService as = new AttachementService();
+        Attachement a = as.findById(p1.getAvatar());
+        //System.out.println((Session.getUser().getAvatar()));
+        File file = new File(a.getPath());
+        Image image = new Image(file.toURI().toString());
+        ConnectedAvtr.setImage(image);
+       
         //String balance = Float.toString(Session.getUser().getBalance());
         //ch_balance.setText(balance);
         places = new ArrayList<>(ps.afficherPlace());
@@ -173,6 +188,18 @@ public class YourPlacesController implements Initializable {
         try {
             Parent root = loader.load();
             HomeController hc = loader.getController();
+           PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+    }
+    
+    @FXML
+    void GoMaps(ActionEvent event) {
+   FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
+        try {
+            Parent root = loader.load();
+            MapController mc = loader.getController();
            PlaceContainer.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

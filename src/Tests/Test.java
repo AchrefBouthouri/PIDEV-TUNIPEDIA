@@ -63,7 +63,7 @@ public class Test {
         //System.out.println(ps.afficherPerson());
         //pls.AjouterPlace(pl1, p1);
         System.out.println(ps.Connexion("achref.bouthouri", "123"));
-
+     
     }
 
 }

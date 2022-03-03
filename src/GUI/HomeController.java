@@ -189,4 +189,18 @@ public class HomeController implements Initializable {
         }
 
     }
+    
+    @FXML
+    void GoMaps(ActionEvent event) {
+   FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
+        try {
+            Parent root = loader.load();
+            MapController mc = loader.getController();
+           PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+    }
+
 }
+

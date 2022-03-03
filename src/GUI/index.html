@@ -3,15 +3,20 @@
 <html>
     <head>
         <meta charset="utf-8" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.css" />
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
-
-        <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
 
     </head>
     <body>
-        <div id="mapid" style="height: 600px;">
-            <script>
+        <div id="mapid" style="height: 600px;"></div>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+                    <script>
                 var mymap = L.map('mapid').setView([33.8869, 9.5375], 6);
 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -22,45 +27,79 @@
                     id: 'mapbox.streets'
                 }).addTo(mymap);
                 var One = new L.Icon({
-        iconUrl: 'Assets/red-marker.png',
-        shadowUrl: 'Assets/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      });
-      var Two = new L.Icon({
-        iconUrl: 'Assets/green-marker.png',
-        shadowUrl: 'Assets/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      });
-      
-                const circle = L.marker([33.7468542, 10.8835273], {icon: One});
+                    iconUrl: 'Assets/red-marker.png',
+                    shadowUrl: 'Assets/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+                var Two = new L.Icon({
+                    iconUrl: 'Assets/green-marker.png',
+                    shadowUrl: 'Assets/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
+                const circle = L.marker([33.7468542, 10.8835273], {icon: Two});
                 //circle.bindPopup(this.popupService.makeCapitalPopup(place));
                 circle.addTo(mymap);
-                var popup = circle.bindPopup('<b>Hello world!</b><br />I am a popup.');
+                var popup = circle.bindPopup('Djerba');
+                const circle1 = L.marker([36.396191, 10.614120], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle1.addTo(mymap);
+                var popup1 = circle1.bindPopup('Hammamet');
+                const circle2 = L.marker([35.7398399, 10.7986953], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle2.addTo(mymap);
+                var popup2 = circle2.bindPopup('Monastir');
+                const circle3 = L.marker([37.0505782, 11.0115064], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle3.addTo(mymap);
+                var popup3 = circle3.bindPopup('Haouaria');
+                const circle4 = L.marker([34.5308, 10.5748], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle4.addTo(mymap);
+                var popup4 = circle4.bindPopup('Plage de chaffar');
+                const circle5 = L.marker([35.293760, 10.710770], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle5.addTo(mymap);
+                var popup5 = circle5.bindPopup('Djem Amphitheater');
+                const circle6 = L.marker([36.851627, 10.330441], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle6.addTo(mymap);
+                var popup6 = circle6.bindPopup('Carthage');
+                const circle7 = L.marker([36.8134113, 10.1321910], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle7.addTo(mymap);
+                var popup7 = circle7.bindPopup('The National Bardo Museum');
+                const circle8 = L.marker([36.869835, 10.341369], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle8.addTo(mymap);
+                var popup8 = circle8.bindPopup('The National Bardo Museum');
+                const circle9 = L.marker([36.6518587, 8.61733075], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle9.addTo(mymap);
+                var popup9 = circle9.bindPopup('Bni-Mtir');
+                const circle10 = L.marker([37.34294, 9.74008], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle10.addTo(mymap);
+                var popup10 = circle10.bindPopup('Cap Angela');
+                const circle11 = L.marker([33.913485, 8.11182407], {icon: Two});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle11.addTo(mymap);
+                var popup11 = circle11.bindPopup('Chott el Djerid');
+
+
                 L.Routing.control({
-      geocoder: L.Control.Geocoder.nominatim()
-    }).addTo(this.map);
+                    geocoder: L.Control.Geocoder.nominatim()
+                }).addTo(mymap);
+                L.control.locate().addTo(mymap);
 
-    var Pos = new L.Icon({
-      iconUrl: 'Assets/blue-marker.png',
-      shadowUrl: 'Assets/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
 
-      const circle = L.marker([this.Position.latitude,this.Position.longitude], { icon: Pos });
-      //circle.bindPopup(this.popupService.makeCapitalPopupPosition());
-      circle.addTo(mymap);
 
             </script>
-        </div>
-
     </body>
 </html>

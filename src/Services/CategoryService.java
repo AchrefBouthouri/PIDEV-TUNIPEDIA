@@ -67,40 +67,57 @@ public class CategoryService {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
-    public void UpdateAttachement(Attachement a, Category c) {
+
+    public void UpdateAttachement(Attachement a, int c) {
         String sql = "UPDATE  Category set attachement=? where id=?";
         try {
             ste = mc.prepareStatement(sql);
             ste.setInt(1, a.getId());
-            ste.setInt(2, c.getId());
+            ste.setInt(2, c);
             ste.executeUpdate();
             System.out.println("Category mis à jour!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public List<Category> afficherCategory(){
+
+    public List<Category> afficherCategory() {
         List<Category> categorys = new ArrayList<>();
         String sql = "SELECT * from Category";
         try {
-            ste =mc.prepareStatement(sql);
-            ResultSet rs=ste.executeQuery();
-            while(rs.next()){
-            Category r = new Category();
-            r.setId(rs.getInt(1));
-            r.setName(rs.getString(2));
-            r.setAttachement(rs.getInt(3));
-            categorys.add(r);
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Category r = new Category();
+                r.setId(rs.getInt(1));
+                r.setName(rs.getString(2));
+                r.setAttachement(rs.getInt(3));
+                categorys.add(r);
             }
         } catch (SQLException ex) {
-           System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
-         return categorys;
+        return categorys;
     }
-    
+
+//    public List<Category> afficherCategory1() {
+//        List<Category> categorys = new ArrayList<>();
+//        String sql = "SELECT c.name,c.attachement from Category as c INNER JOIN Attachement as a on (c.attachement=a.id)";
+//        try {
+//            ste = mc.prepareStatement(sql);
+//            ResultSet rs = ste.executeQuery();
+//            while (rs.next()) {
+//                Category r = new Category();
+//                r.setName(rs.getString("Name"));
+//                r.setAttachement(rs.getInt(""));
+//                categorys.add(r);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return categorys;
+//    }
+
     public List<String> getAllCategoryName() {
         List<String> categoryName = new ArrayList<>();
         String sql = "select Name from Category";
@@ -115,6 +132,5 @@ public class CategoryService {
         }
         return categoryName;
     }
-
 
 }

@@ -47,7 +47,7 @@ public class EvaluationService {
             ste.setInt(1, E.getNotice());
             ste.setString(2, E.getComment());
             ste.setInt(3, E.getPlace_id());
-            ste.setString(4, E.getCreatedBy());
+            ste.setInt(4, E.getCreatedBy());
             ste.executeUpdate();
             System.out.println("Evalution ajouter");
         } catch (SQLException ex) {
@@ -68,7 +68,7 @@ public class EvaluationService {
                 E.setNotice(rs.getInt(1));
                 E.setCreatedAt(rs.getDate(2));
                 E.setComment(rs.getString(3));
-                E.setCreatedBy(rs.getString(4));
+                E.setCreatedBy(rs.getInt(4));
 
                 E.setLocation(rs.getString(5));
                 Evaluations.add(E);

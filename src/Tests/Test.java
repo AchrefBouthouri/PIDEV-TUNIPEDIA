@@ -62,7 +62,7 @@ public class Test {
         //CLS.AjouterClient(PER1, a1);
         //System.out.println(ps.afficherPerson());
         //pls.AjouterPlace(pl1, p1);
-        System.out.println(ps.Connexion("achref.bouthouri", "123"));
+        System.out.println(pls.afficherPlaceByTop());
      
     }
 

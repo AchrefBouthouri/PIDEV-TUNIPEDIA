@@ -1,229 +1,431 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichagePlaceController">
-   <top>
-      <HBox prefHeight="49.0" prefWidth="1281.0" spacing="20.0" style="-fx-background-color: #ffde8c;" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichagePlaceController">
+ <top>
+      <HBox prefHeight="0.0" prefWidth="1201.0" spacing="20.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="58.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="157.0" onMouseClicked="#BackHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logo.png" />
                </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </ImageView>
-            <Separator orientation="VERTICAL" prefHeight="100.0" style="-fx-background-color: #ffde8c;">
+            <Separator orientation="VERTICAL" prefHeight="62.0" prefWidth="0.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </Separator>
-            <HBox prefHeight="21.0" prefWidth="200.0">
+            <Pane maxWidth="867.0" prefHeight="63.0" prefWidth="867.0" HBox.hgrow="ALWAYS" />
+            <HBox prefHeight="63.0" prefWidth="226.0" styleClass="round-layout" stylesheets="@styles.css">
                <children>
-                  <TextField alignment="BOTTOM_CENTER" promptText="Search">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <FontAwesomeIcon glyphName="SEARCH">
-                     <HBox.margin>
-                        <Insets left="5.0" top="18.0" />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-               </children>
-            </HBox>
-            <Pane prefHeight="54.0" prefWidth="623.0">
-               <children>
-                  <Pane layoutX="-72.0" layoutY="-10.0" prefHeight="54.0" prefWidth="504.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="500.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-                        <Label layoutX="514.0" layoutY="19.0" text="Balance:">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="ch_balance" layoutX="603.0" layoutY="17.0" prefHeight="22.0" prefWidth="77.0" text="10$">
-                           <font>
-                              <Font name="Ebrima" size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-               </children></Pane>
-            <HBox prefHeight="54.0" prefWidth="266.0" style="-fx-background-color: black;">
-               <children>
-                  <Label fx:id="connecteduser" prefHeight="54.0" prefWidth="166.0" text="WASSIM OMRANI " textFill="#fcf5f5">
+                  <Label fx:id="ConnectedUsr" alignment="CENTER" prefHeight="54.0" prefWidth="174.0">
                      <font>
                         <Font name="Berlin Sans FB" size="17.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="5.0" top="5.0" />
                      </HBox.margin>
                      <padding>
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <ImageView fitHeight="54.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo1.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="ConnectedAvtr" fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="22.0" top="5.0" />
+                     </HBox.margin></ImageView>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </HBox>
          </children>
       </HBox>
    </top>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <left>
+      <VBox prefHeight="744.0" prefWidth="191.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox prefHeight="189.0" prefWidth="132.0">
                <children>
-                  <Pane prefHeight="328.0" prefWidth="175.0" />
-                  <ImageView fx:id="image" fitHeight="328.0" fitWidth="636.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Djem.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="328.0" prefWidth="424.0">
-                     <children>
-                        <Pane prefHeight="334.0" prefWidth="423.0">
-                           <children>
-                              <DatePicker fx:id="datepicker" layoutX="89.0" layoutY="108.0" prefHeight="25.0" prefWidth="244.0" />
-                              <Button layoutX="90.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#effectuerreservation" prefHeight="51.0" prefWidth="248.0" text="Reserver">
-                                 <font>
-                                    <Font name="System Bold" size="19.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="money" layoutX="261.0" layoutY="155.0" prefHeight="33.0" prefWidth="46.0" text="Label">
-                                 <font>
-                                    <Font name="Candara Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Pane prefHeight="100.0" prefWidth="146.0" />
-                  <Label prefHeight="143.0" prefWidth="82.0" text="Name :">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="placename" prefHeight="56.0" prefWidth="273.0">
-                     <HBox.margin>
-                        <Insets left="5.0" top="20.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Pane prefHeight="100.0" prefWidth="148.0" />
-                  <Label prefHeight="50.0" prefWidth="202.0" text="Description:">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="placedescription" prefHeight="121.0" prefWidth="120.0">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="79.0" prefWidth="1281.0">
-               <children>
-                  <Pane prefHeight="79.0" prefWidth="59.0" />
-                  <Label prefHeight="79.0" prefWidth="165.0" text="Adress">
-                     <font>
-                        <Font name="Berlin Sans FB" size="21.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="adresseid" prefHeight="79.0" prefWidth="129.0" text="Label">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="57.0" prefWidth="225.0" />
-                  <Label fx:id="cityid" prefHeight="78.0" prefWidth="88.0" text="City">
+                  <Label prefHeight="50.0" prefWidth="79.0" text="Discovery">
                      <font>
                         <Font name="Berlin Sans FB" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label prefHeight="83.0" prefWidth="128.0" text="Label">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="57.0" prefWidth="190.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Pane>
-                  <Label prefHeight="85.0" prefWidth="131.0" text="PostalCode">
-                     <font>
-                        <Font name="Berlin Sans FB" size="21.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="postalid" prefHeight="91.0" prefWidth="196.0" text="Label">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
+                  <HBox prefHeight="29.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/hot.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Top Places">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox onMouseClicked="#GoMaps" prefHeight="29.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/browse.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Browse">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/sort.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Categories">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
+            </VBox>
+            <Separator prefWidth="200.0">
                <opaqueInsets>
-                  <Insets top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </opaqueInsets>
-            </HBox>
-            <HBox prefHeight="46.0" prefWidth="1281.0">
+            </Separator>
+            <VBox prefHeight="197.0" prefWidth="132.0">
                <children>
-                  <Pane prefHeight="92.0" prefWidth="240.0" />
-                  <Label prefHeight="47.0" prefWidth="159.0" text="Longitude">
+                  <Label prefHeight="50.0" prefWidth="131.0" text="Events &amp; Offers">
                      <font>
-                        <Font name="Berlin Sans FB" size="24.0" />
+                        <Font name="Berlin Sans FB" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label fx:id="longid" prefHeight="47.0" prefWidth="102.0" text="Label">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="92.0" prefWidth="237.0" />
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="45.0" prefWidth="145.0" text="Latitude">
-                     <font>
-                        <Font name="Berlin Sans FB" size="21.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="latid" prefHeight="83.0" prefWidth="166.0" text="Label">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Label>
+                  <HBox prefHeight="29.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/sort.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Offers">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/sort.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Events">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#Addevent" prefHeight="33.2" prefWidth="180.0" style="-fx-background-color: #f0af4d;" text="Add Event">
+                     <VBox.margin>
+                        <Insets left="5.0" top="10.0" />
+                     </VBox.margin></Button>
                </children>
+            </VBox>
+            <Separator prefWidth="200.0">
+               <opaqueInsets>
+                  <Insets left="10.0" top="10.0" />
+               </opaqueInsets>
+            </Separator>
+            <VBox prefHeight="197.0" prefWidth="132.0">
+               <children>
+                  <Label prefHeight="50.0" prefWidth="131.0" text="Places">
+                     <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox onMouseClicked="#YourPlaces" prefHeight="48.0" prefWidth="132.0">
+                     <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/sort.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Your Places">
+                           <HBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="33.0" prefWidth="81.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddP" prefHeight="96.0" prefWidth="180.0" style="-fx-background-color: #f0af4d;" text="CREATE PLACE!">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin></Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="33.0" prefWidth="81.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </HBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="848.0" prefWidth="1090.0">
+               <children>
+                  <VBox prefHeight="628.0" prefWidth="625.0">
+                     <children>
+                        <HBox prefHeight="185.0" prefWidth="523.0" stylesheets="@styles.css">
+                           <children>
+                              <Pane prefHeight="185.0" prefWidth="87.0" />
+                              <ImageView fx:id="image" fitHeight="180.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" styleClass="photo-profile">
+                                 <image>
+                                    <Image url="@Assets/Djem.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox maxWidth="550.0" prefHeight="55.0" prefWidth="1281.0">
+                           <children>
+                              <Pane prefHeight="78.0" prefWidth="39.0" />
+                              <Label prefHeight="78.0" prefWidth="162.0" text="Name :">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="placename" prefHeight="100.0" prefWidth="162.0" text="Label">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxWidth="550.0" prefHeight="55.0" prefWidth="1281.0">
+                           <children>
+                              <Pane prefHeight="78.0" prefWidth="39.0" />
+                              <Label prefHeight="78.0" prefWidth="162.0" text="Adress :">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="adresseid" prefHeight="100.0" prefWidth="162.0" text="Label">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxWidth="550.0" prefHeight="55.0" prefWidth="1281.0">
+                           <children>
+                              <Pane prefHeight="78.0" prefWidth="39.0" />
+                              <Label prefHeight="78.0" prefWidth="162.0" text="City :">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="cityid" prefHeight="100.0" prefWidth="162.0" text="Label">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxWidth="550.0" prefHeight="55.0" prefWidth="1281.0">
+                           <children>
+                              <Pane prefHeight="78.0" prefWidth="39.0" />
+                              <Label prefHeight="78.0" prefWidth="162.0" text="Postal Code">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="postalid" prefHeight="100.0" prefWidth="162.0" text="Label">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxWidth="646.0" prefHeight="206.0" prefWidth="646.0">
+                           <children>
+                              <Pane prefHeight="100.0" prefWidth="39.0" />
+                              <Label prefHeight="50.0" prefWidth="149.0" text="Description:">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="placedescription" prefHeight="227.0" prefWidth="430.0" text="Label" wrapText="true">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin></Separator>
+                  <ScrollPane fx:id="EvContainer" prefHeight="687.0" prefWidth="416.0">
+                     <content>
+                        <GridPane fx:id="Comments">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                     <HBox.margin>
+                        <Insets right="15.0" top="5.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <Pane prefHeight="162.0" prefWidth="1090.0" />
+            <VBox prefHeight="328.0" prefWidth="424.0">
+               <children>
+                  <HBox prefHeight="285.0" prefWidth="1065.0">
+                     <children>
+                        <VBox prefHeight="177.0" prefWidth="268.0">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#effectuerreservation" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #f0af4d;" text="Reclamer">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Pane prefHeight="16.0" prefWidth="268.0" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#effectuerreservation" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black;" text="Reserver" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="20.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="108.0" prefWidth="496.0" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#effectuerreservation" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #f0af4d;" text="Evaluer">
+                           <font>
+                              <Font name="Berlin Sans FB" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </VBox>
          </children>
       </VBox>
    </center>

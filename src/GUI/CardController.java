@@ -145,7 +145,7 @@ public class CardController implements Initializable {
                 break;
                 
         }
-        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0),10,0,0,10);");
+        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropshadow(three-pass-box, rgba(1,0,0,0.8), 10, 0, 0, 10);");
         return p.getId();
 
     }

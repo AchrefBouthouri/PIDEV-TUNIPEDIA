@@ -70,7 +70,7 @@ public class PlaceService {
 
     public List<Place> afficherPlace() {
         List<Place> place = new ArrayList<>();
-        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id";
+        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,p.Views,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id";
         try {
             ste = mc.prepareStatement(sql);
             ResultSet rs = ste.executeQuery();
@@ -92,7 +92,8 @@ public class PlaceService {
                 Type TypeEnum = Type.valueOf(TypeStr);
                 p.setType(TypeEnum);
                 p.setAttachement(rs.getInt(14));
-                p.setCategory(rs.getString(15));
+                 p.setViews(rs.getInt(15));
+                p.setCategory(rs.getString(16));
                 place.add(p);
             }
         } catch (SQLException ex) {
@@ -152,6 +153,64 @@ public class PlaceService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+       public void IncrementView(Place p) {
+        String sql = "UPDATE  Place set Views=Views+1 where Id=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, p.getId());
+            ste.executeUpdate();
+            System.out.println("View mis Ã  jour!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+       public void VerifPlace( int id) {
+        String sql = "UPDATE  Place set Status=? where id=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setBoolean(1, true);
+            ste.setInt(2, id);
+            ste.executeUpdate();
+            System.out.println("le Statut est mis Ã  jour!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+      public List<Place> getAllPlaces() {
+        List<Place> place = new ArrayList<>();
+            String req = "select  Id,Name,Description,Adress,City,PostalCode,Latitude,Longitude,Category,Evaluation,Notice,Status,CreatedBy,Type,Attachement from place";
+        try {
+            ste = mc.prepareStatement(req);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setCategory(rs.getString(9));
+                p.setEvaluation(rs.getInt(10));
+                p.setNotice(rs.getInt(11));
+                p.setStatus(rs.getBoolean(12));
+                p.setCreatedBy(rs.getInt(13));
+           
+                String TypeStr = rs.getString(14);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(15));
+                place.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return place;
+
     }
 
     public Place Selectplace(int idplace) {
@@ -243,5 +302,110 @@ public class PlaceService {
             System.out.println(ex.getMessage());
         }
         return idowner;
+    }
+        public List<Place> afficherPlaceByTop() {
+        List<Place> place = new ArrayList<>();
+        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,p.Views,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id ORDER BY p.Notice DESC";
+        try {
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setEvaluation(rs.getInt(9));
+                p.setNotice(rs.getInt(10));
+                p.setStatus(rs.getBoolean(11));
+                p.setCreatedBy(rs.getInt(12));
+                String TypeStr = rs.getString(13);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(14));
+                 p.setViews(rs.getInt(15));
+                p.setCategory(rs.getString(16));
+                place.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return place;
+
+    }
+              public List<Place> afficherPlaceByAZ() {
+        List<Place> place = new ArrayList<>();
+        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,p.Views,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id ORDER BY p.Name";
+        try {
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setEvaluation(rs.getInt(9));
+                p.setNotice(rs.getInt(10));
+                p.setStatus(rs.getBoolean(11));
+                p.setCreatedBy(rs.getInt(12));
+                String TypeStr = rs.getString(13);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(14));
+                 p.setViews(rs.getInt(15));
+                p.setCategory(rs.getString(16));
+                place.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return place;
+
+    }
+                    public List<Place> afficherPlaceByZA() {
+        List<Place> place = new ArrayList<>();
+        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,p.Views,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id ORDER BY p.Name DESC";
+        try {
+            ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setEvaluation(rs.getInt(9));
+                p.setNotice(rs.getInt(10));
+                p.setStatus(rs.getBoolean(11));
+                p.setCreatedBy(rs.getInt(12));
+                String TypeStr = rs.getString(13);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(14));
+                 p.setViews(rs.getInt(15));
+                p.setCategory(rs.getString(16));
+                place.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return place;
+
     }
 }

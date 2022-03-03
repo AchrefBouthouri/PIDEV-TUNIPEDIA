@@ -9,6 +9,7 @@ import Entities.Attachement;
 import Entities.Person;
 import Services.AttachementService;
 import Services.PersonService;
+import Services.PlaceService;
 import Tools.Session;
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +40,6 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private VBox vbox;
     private Parent fxml;
-
     /**
      * Initializes the controller class.
      */
@@ -54,6 +54,14 @@ public class AdminDashboardController implements Initializable {
         File file = new File(a.getPath());
         Image image = new Image(file.toURI().toString());
         avatar.setImage(image);
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("AllUsers.fxml"));
+            vbox.getChildren().removeAll();
+            vbox.getChildren().setAll(fxml);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     @FXML

@@ -6,8 +6,11 @@
 package GUI;
 
 import Entities.Attachement;
+import Entities.Evaluation;
+import Entities.Person;
 import Entities.Place;
 import Services.AttachementService;
+import Services.PersonService;
 import Services.PlaceService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
@@ -32,20 +35,12 @@ import javafx.scene.paint.Color;
  *
  * @author Achref Bouthouri
  */
-public class CardHomeController implements Initializable {
+public class CommentCardController implements Initializable {
 
     @FXML
     private VBox Box;
-    @FXML
-    private ImageView Attachement;
-    @FXML
-    private Label Description;
-    @FXML
+     @FXML
     private Label Name;
-    @FXML
-    private Label Type;
-    AffichagePlaceController hc;
-    public int notice;
     int id;
     @FXML
     private FontAwesomeIcon star1;
@@ -58,7 +53,10 @@ public class CardHomeController implements Initializable {
     @FXML
     private FontAwesomeIcon star5;
     @FXML
-    private Label views;
+    private Label Comment;
+    @FXML
+    private Label Date;
+  AffichagePlaceController hc;
 
 
     /**
@@ -68,25 +66,16 @@ public class CardHomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private final String[] colors = {"e6d2b5","ffffff"};
+    private final String[] colors = {"e6d2b5","9f7866"};
     PlaceService ps = new PlaceService();
+    PersonService ps1 = new PersonService();
 
-    public int SetData(Place p) {
-        AttachementService as = new AttachementService();
-        Attachement a = as.findById(p.getAttachement());
-        //System.out.println((Session.getUser().getAvatar()));
-        File file = new File(a.getPath());
-        Image image = new Image(file.toURI().toString());
-        views.setText(String.valueOf(p.getViews()));
-        Attachement.setImage(image);
-        id = p.getId();
-        Name.setText(p.getName());
-        // int cardid = (p.getId());
-        //  ps.Selectplace(p.getId());
-        //  System.out.println(cardid);
-        Type.setText(p.getType());
-        Description.setText(p.getDescription());
-        switch (p.getNotice()) {
+    public int SetData(Evaluation e) {
+        Person p1 = ps1.findById(e.getCreatedBy());
+        Name.setText(p1.getFullName());
+        Date.setText(e.getCreatedAt().toString());
+        Comment.setText(e.getComment());
+        switch (e.getNotice()) {
             case 1:
                 star1.setFill(Color.rgb(253, 193, 2));
                 star2.setFill(Color.BLACK);
@@ -131,8 +120,8 @@ public class CardHomeController implements Initializable {
                 break;
                 
         }
-        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropshadow(three-pass-box, rgba(1,0,0,0.8), 10, 0, 0, 10);");
-        return p.getId();
+        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0),10,0,0,10);");
+        return e.getId();
 
     }
 
@@ -140,7 +129,6 @@ public class CardHomeController implements Initializable {
     public void select_one(MouseEvent event) {
         PlaceService pse = new PlaceService();
         Place a = ps.Selectplace(id);
-        pse.IncrementView(a);
         System.out.println("ID" + id);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichagePlace.fxml"));
         try {

@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -36,7 +37,7 @@
             </Separator>
             <HBox maxHeight="25.0" maxWidth="200.0" prefHeight="25.0" prefWidth="170.0" styleClass="round-layout" stylesheets="@styles.css">
                <children>
-                  <TextField fx:id="SearchBar" alignment="TOP_LEFT" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
+                  <TextField fx:id="SearchBar" alignment="TOP_LEFT" onKeyReleased="#search" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -44,9 +45,9 @@
                         <Insets />
                      </opaqueInsets>
                   </TextField>
-                  <FontAwesomeIcon glyphName="SEARCH" onMouseClicked="#search">
+                  <FontAwesomeIcon glyphName="SEARCH">
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets right="5.0" top="7.0" />
                      </HBox.margin>
                   </FontAwesomeIcon>
                </children>
@@ -113,7 +114,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="29.0" prefWidth="155.0">
+                  <HBox onMouseClicked="#GoMaps" prefHeight="29.0" prefWidth="155.0">
                      <children>
                         <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -265,18 +266,6 @@
                </children>
             </VBox>
             <Separator prefWidth="200.0" />
-            <HBox prefHeight="33.0" prefWidth="81.0">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GoMaps" prefHeight="96.0" prefWidth="180.0" style="-fx-background-color: #1a73e8;" text="MAPS!" textFill="#f8f3f3">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
          </children>
          <padding>
             <Insets top="10.0" />
@@ -286,17 +275,24 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Welcome !">
-               <font>
-                  <Font name="Berlin Sans FB" size="31.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-            </Label>
+            <HBox prefHeight="43.0" prefWidth="1090.0">
+               <children>
+                  <Label text="Welcome !">
+                     <font>
+                        <Font name="Berlin Sans FB" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="42.0" prefWidth="733.0" />
+                  <ComboBox fx:id="Trier" onAction="#Trier" prefHeight="31.0" prefWidth="185.0" promptText="Trier" style="-fx-background-color: #f0af4d;">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
             <ScrollPane fx:id="Card" prefHeight="624.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="PlaceContainer" prefHeight="0.0" prefWidth="2.0">

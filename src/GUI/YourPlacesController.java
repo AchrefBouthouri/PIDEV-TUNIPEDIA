@@ -195,7 +195,7 @@ public class YourPlacesController implements Initializable {
     }
     
     @FXML
-    void GoMaps(ActionEvent event) {
+    void GoMaps(MouseEvent event) {
    FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
         try {
             Parent root = loader.load();

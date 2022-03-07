@@ -68,8 +68,8 @@ public class FXMain extends Application {
             });
          
             root.setOnMouseDragged((MouseEvent event) -> {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
+                primaryStage.setX(event.getScreenX() - 1024);
+                primaryStage.setY(event.getScreenY() - 860);
             });
             
             

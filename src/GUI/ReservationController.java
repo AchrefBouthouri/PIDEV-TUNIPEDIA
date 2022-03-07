@@ -226,25 +226,20 @@ alert1.showAndWait();
             PayementService ps = new PayementService();
 
             System.out.println(p.toString());
-            try {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Annuler le paiement");
-                alert.setHeaderText(null);
-                alert.setContentText("Etes-vous sur de vouloir Annuler la participation dans l'evenement " +" "+ r.getLocation());
-                Optional<ButtonType> action = alert.showAndWait();
-                if (action.get() == ButtonType.OK) {
-                    
-                    ps.AnnulerParticipation(Session.getUser().getId(), r.getId());
-                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                    alert1.setTitle("Succés!");
-                    alert1.setHeaderText(null);
-                    alert1.setContentText("Anuulation done!");
-
-                    alert1.showAndWait();
-                }
-            } catch (SQLException ex) {
-            Logger.getLogger(GUI.ReservationController.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Annuler le paiement");
+            alert.setHeaderText(null);
+            alert.setContentText("Etes-vous sur de vouloir Annuler la participation dans l'evenement " +" "+ r.getLocation());
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                
+                ps.AnnulerParticipation(Session.getUser().getId(), r.getId());
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Succés!");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Anuulation done!");
+                
+                alert1.showAndWait();
             }
         
          loadData();

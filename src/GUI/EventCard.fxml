@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="Box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#select_one" pickOnBounds="false" prefHeight="264.0" prefWidth="289.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EventCardController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <ImageView fx:id="Attachement" fitHeight="139.0" fitWidth="264.0" pickOnBounds="true">
+         <image>
+            <Image url="@Assets/beach.jpg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="131.0" prefWidth="268.0">
+         <children>
+            <Label fx:id="Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="296.0" text="name">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+            </Label>
+            <Label fx:id="datedebut" text="Date debut">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="90.0" prefWidth="268.0">
+               <children>
+                  <Label fx:id="Description" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="81.0" prefWidth="194.0" text="desc" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="203.0">
+         <children>
+            <FontAwesomeIcon fx:id="star1" glyphName="STAR" onMouseClicked="#AddStar1" />
+            <FontAwesomeIcon fx:id="star2" glyphName="STAR" onMouseClicked="#AddStar2" />
+            <FontAwesomeIcon fx:id="star3" glyphName="STAR" onMouseClicked="#AddStar3" />
+            <FontAwesomeIcon fx:id="star4" glyphName="STAR" onMouseClicked="#AddStar4" />
+            <FontAwesomeIcon fx:id="star5" glyphName="STAR" onMouseClicked="#AddStar5" />
+            <Separator orientation="VERTICAL" prefHeight="200.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Separator>
+            <Label fx:id="views" opacity="0.38" prefHeight="17.0" prefWidth="21.0" text="100">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="/" />
+            <Label fx:id="capacite" opacity="0.45" text="Label" />
+         </children>
+      </HBox>
+   </children>
+   <effect>
+      <DropShadow height="47.02" radius="31.895000000000003" spread="0.04" width="82.56" />
+   </effect>
+</VBox>

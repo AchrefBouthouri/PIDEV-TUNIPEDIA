@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="860.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="GUI.AllPlacesController">
+   <children>
+      <VBox layoutX="2.0" layoutY="1.0" prefHeight="575.0" prefWidth="860.0">
+         <children>
+            <HBox prefHeight="65.0" prefWidth="852.0" style="-fx-background-color: e3e4e6;">
+               <children>
+                  <Label prefHeight="65.0" prefWidth="221.0" style="-fx-background-color: f0af4d;" text="Liste Utilisateurs" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tabu" onMouseClicked="#getCategorie" prefHeight="246.0" prefWidth="542.0">
+               <columns>
+                  <TableColumn fx:id="name" prefWidth="98.28571045398712" text="Name" />
+                  <TableColumn fx:id="adresse" prefWidth="167.9999771118164" text="Adresse" />
+                  <TableColumn fx:id="city" prefWidth="77.71429443359375" text="City" />
+                  <TableColumn fx:id="postalcode" prefWidth="123.4285888671875" text="PostalCode" />
+                  <TableColumn fx:id="notice" prefWidth="84.57147216796875" text="Notice" />
+                  <TableColumn fx:id="type" prefWidth="65.142822265625" text="Type" />
+                  <TableColumn fx:id="createdby" prefWidth="111.99993896484375" text="CreatedBy" />
+                  <TableColumn fx:id="Status" prefWidth="72.00005231584817" text="Status" />
+               </columns>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="30.0" right="30.0" top="15.0" />
+               </VBox.margin>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="180.0" prefWidth="669.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="30.0" top="15.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@Assets/photo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="180.0" prefWidth="255.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="298.0">
+                           <children>
+                              <VBox prefHeight="165.0" prefWidth="226.0">
+                                 <children>
+                                    <Label text="ID" />
+                                    <TextField fx:id="id" disable="true" prefHeight="25.0" prefWidth="219.0" />
+                                    <Label text="Name Place" />
+                                    <TextField fx:id="namep" disable="true" prefHeight="25.0" prefWidth="219.0" />
+                                    <Label text="CreatedBy" />
+                                    <TextField fx:id="CreatedBy" disable="true" prefHeight="25.0" prefWidth="219.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_RIGHT" prefHeight="78.0" prefWidth="273.0">
+                     <children>
+                        <HBox alignment="TOP_RIGHT" prefHeight="34.0" prefWidth="447.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#Delete" prefHeight="32.0" prefWidth="61.0" style="-fx-background-color: cf0c0c;" text="Delete" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#verify" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: green;" text="Verify" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="6.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#Cancel" prefHeight="31.0" prefWidth="130.0" style="-fx-background-color: bababa;" text="Cancel" textFill="WHITE" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

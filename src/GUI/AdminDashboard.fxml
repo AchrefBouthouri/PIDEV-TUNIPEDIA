@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-border-color: #f0af4d; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminDashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" style="-fx-border-color: #f0af4d; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminDashboardController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="300.0" spacing="15.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="630.0" prefWidth="219.0" spacing="15.0" style="-fx-background-color: white;" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="192.0" prefWidth="300.0" spacing="15.0">
                <VBox.margin>
@@ -21,21 +21,24 @@
                   <ImageView fx:id="avatar" fitHeight="153.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="photo-profile">
 
                   </ImageView>
-                  <Label fx:id="name" prefHeight="17.0" prefWidth="91.0" />
+                  <Label fx:id="name" prefHeight="17.0" prefWidth="91.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="12.0" />
+                     </font></Label>
                </children>
             </VBox>
-            <VBox prefHeight="409.0" prefWidth="300.0" spacing="15.0">
+            <VBox maxWidth="320.0" prefHeight="374.0" prefWidth="214.0" spacing="15.0" style="-fx-border-color: ffffff; -fx-border-image-width: 30;">
                <children>
-                  <HBox alignment="CENTER" onMouseClicked="#AllUsers" prefHeight="45.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" maxWidth="290.0" onMouseClicked="#AllUsers" prefHeight="45.0" prefWidth="283.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Assets/users-icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="17.0" prefWidth="148.0" text="Users" textFill="WHITE">
+                        <Label prefHeight="17.0" prefWidth="148.0" text="Users">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="Berlin Sans FB" size="20.0" />
                            </font>
                            <padding>
                               <Insets left="15.0" />
@@ -43,18 +46,18 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox prefHeight="115.0" prefWidth="300.0">
+                  <VBox prefHeight="87.0" prefWidth="300.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#AllPlaces" prefHeight="45.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxWidth="290.0" onMouseClicked="#AllPlaces" prefHeight="45.0" prefWidth="200.0">
                            <children>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Assets/places.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="17.0" prefWidth="148.0" text="Places" textFill="WHITE">
+                              <Label prefHeight="17.0" prefWidth="148.0" text="Places">
                                  <font>
-                                    <Font name="System Bold" size="15.0" />
+                                    <Font name="Berlin Sans FB" size="20.0" />
                                  </font>
                                  <padding>
                                     <Insets left="15.0" />
@@ -62,7 +65,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox onMouseClicked="#AjouterPlace" prefHeight="100.0" prefWidth="200.0">
+                        <HBox onMouseClicked="#AjouterPlace" prefHeight="39.0" prefWidth="200.0">
                            <children>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -72,56 +75,36 @@
                                     <Insets top="8.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label alignment="TOP_LEFT" contentDisplay="TOP" onMouseClicked="#AjouterCategorie" text="Ajouter Place" textFill="WHITE">
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" onMouseClicked="#AjouterCategorie" prefHeight="41.0" prefWidth="92.0" text="Ajouter Place" textFill="#f0af4d">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="Berlin Sans FB" size="12.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox onMouseClicked="#SupprimerPlace" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Assets/remove.png" />
-                                 </image>
                                  <HBox.margin>
-                                    <Insets top="8.0" />
+                                    <Insets top="3.0" />
                                  </HBox.margin>
-                              </ImageView>
-                              <Label onMouseClicked="#SupprimerCategorie" prefHeight="19.0" prefWidth="138.0" text="Supprimer Place" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
                               </Label>
                            </children>
                            <VBox.margin>
-                              <Insets left="90.0" />
+                              <Insets left="60.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="84.0" prefWidth="300.0">
+                  <VBox prefHeight="74.0" prefWidth="300.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#AllCategories" prefHeight="50.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" onMouseClicked="#AllCategories" prefHeight="50.0" prefWidth="270.0">
                            <children>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Assets/category.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="17.0" prefWidth="148.0" text="Categories" textFill="WHITE">
+                              <Label prefHeight="17.0" prefWidth="148.0" text="Categories">
                                  <font>
-                                    <Font name="System Bold" size="15.0" />
+                                    <Font name="Berlin Sans FB" size="20.0" />
                                  </font>
                                  <padding>
                                     <Insets left="15.0" />
@@ -129,7 +112,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox maxWidth="200.0" prefHeight="38.0" prefWidth="200.0">
                            <children>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -139,40 +122,20 @@
                                     <Insets top="8.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label alignment="TOP_LEFT" contentDisplay="TOP" onMouseClicked="#AjouterCategorie" text="Ajouter Categorie" textFill="WHITE">
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" onMouseClicked="#AjouterCategorie" prefWidth="119.0" text="Ajouter Categorie" textFill="#f0af4d">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="Berlin Sans FB" size="12.0" />
                                  </font>
                                  <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
                                  </padding>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="90.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Assets/remove.png" />
-                                 </image>
                                  <HBox.margin>
-                                    <Insets top="8.0" />
+                                    <Insets top="3.0" />
                                  </HBox.margin>
-                              </ImageView>
-                              <Label onMouseClicked="#SupprimerCategorie" prefHeight="19.0" prefWidth="138.0" text="Supprimer Categorie" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
                               </Label>
                            </children>
                            <VBox.margin>
-                              <Insets left="90.0" />
+                              <Insets left="48.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
@@ -180,7 +143,7 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </VBox>
-                  <HBox alignment="CENTER" onMouseClicked="#AllReclamation" prefHeight="45.0" prefWidth="300.0">
+                  <HBox alignment="CENTER" maxWidth="297.0" onMouseClicked="#AllReclamation" prefHeight="52.0" prefWidth="212.0">
                      <children>
                         <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -190,9 +153,9 @@
                               <Insets />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="17.0" prefWidth="148.0" text="Reclamations" textFill="WHITE">
+                        <Label prefHeight="17.0" prefWidth="148.0" text="Reclamations">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="Berlin Sans FB" size="20.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -201,11 +164,37 @@
                      </children>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets right="5.0" />
+               </VBox.margin>
             </VBox>
+            <HBox alignment="CENTER" maxWidth="297.0" onMouseClicked="#AllEvents" prefHeight="118.0" prefWidth="219.0">
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/event.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="17.0" prefWidth="148.0" text="Evénements">
+                     <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="11.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
    </left>
    <center>
-      <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="630.0" prefWidth="908.0" style="-fx-background-color: f0f0f0;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

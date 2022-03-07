@@ -6,11 +6,13 @@
 package Tests;
 
 import Entities.Client;
+import Entities.Event;
 import Entities.Offer;
 import Entities.Person;
 import Entities.Place;
 import Enum.Gender;
 import Enum.Type;
+import Services.EventService;
 import Services.OfferService;
 import Services.PersonService;
 import Services.PlaceService;
@@ -46,11 +48,11 @@ public class Test {
         //Person p5 = new Client(0, "Mohamed Amine Teyeb", "amine.tayeb@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
         //Person p6 = new Client(0, "Mohamed Amine Chouchene", "moham@esprit.tn", "123", 12, false, new Date(0), Gender.Male, "Tunisia");
         //ps.AjouterPersonne(p6);
-        Place pl1 = new Place(0, "Hammamet", "XXX", "XXX", "XXX", "4150", "14N15E", "12S13W", 2, 0, 0, true, 0, Type.Private, 0);
+    //    Place pl1 = new Place(0, "Hammamet", "XXX", "XXX", "XXX", "4150", "14N15E", "12S13W", 2, 0, 0, true, 0, Type.Private, 0);
 
         //Attachement a1 = new Attachement(0, "ville.png", "src/ville.png");
         //Category c1 = new Category(0,"Ville",a1.getId());
-        Offer o = new Offer(2, new Date(122, 1, 1), new Date(122, 1, 1), 500, 8);
+      //  Offer o = new Offer(2, new Date(122, 1, 1), new Date(122, 1, 1), 500, 8);
 
         // os.ajouterOffer(o);
         //  os.SupprimerOffer(o);
@@ -62,8 +64,10 @@ public class Test {
         //CLS.AjouterClient(PER1, a1);
         //System.out.println(ps.afficherPerson());
         //pls.AjouterPlace(pl1, p1);
-        System.out.println(ps.Connexion("achref.bouthouri", "123"));
-
+       // System.out.println(pls.afficherPlaceByTop());
+        EventService en = new EventService();
+        Event e = en.Selectevent(20);
+        System.out.println(en.Selectevent(20));
     }
 
 }

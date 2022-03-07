@@ -31,6 +31,7 @@ public class Place {
     private String category;
     private int capacite;
     private float prix;
+    private int views;
     //private String Img;
     //private int[] evaluations;
 
@@ -103,6 +104,10 @@ public class Place {
 
     public String getName() {
         return name;
+    }
+
+    public int getViews() {
+        return views;
     }
 
     public String getDescription() {
@@ -183,6 +188,10 @@ public class Place {
 
     public void setAdresse(String Adresse) {
         this.Adresse = Adresse;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 
     public void setCity(String City) {

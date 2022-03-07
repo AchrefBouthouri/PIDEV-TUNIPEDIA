@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Event;
 import Entities.Reservation;
 import Tools.ConnexionDB;
 import java.sql.Connection;
@@ -29,7 +30,8 @@ public class ReservationService {
         mc = ConnexionDB.getInstance().getCnx();
     }
 
-    public void AjouterReservation(Reservation r) {
+    public Reservation AjouterReservation(Reservation r) {
+       
         String sql = "INSERT INTO Reservation(date,Validation,CreatedBy,Place_id) VALUES(?,?,?,?)";
         try {
             ste = mc.prepareStatement(sql);
@@ -43,7 +45,7 @@ public class ReservationService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } return r;
     }
 
     public List<Reservation> afficherReservation() {
@@ -139,14 +141,14 @@ public class ReservationService {
         return theCount;
     }
 
-    public int getcount(int idreserveur, int placeid, LocalDate jourchoisi) {
+    public int getcount(int idreserveur, int placeid) {
         int theCount = 0;
         try {
-            String req = "select count(*) from reservation where Place_id=? and CreatedBy=? and Date=?";
+            String req = "select count(*) from reservation where Place_id=? and CreatedBy=?";
             PreparedStatement st = mc.prepareStatement(req);
             st.setInt(1, placeid);
             st.setInt(2, idreserveur);
-            st.setDate(3, Date.valueOf(jourchoisi));
+           
 
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
@@ -157,5 +159,35 @@ public class ReservationService {
         }
         return theCount;
     }
-
+    public Reservation getbyid(int idcreatedby,int eventid) {
+        Reservation r = null;
+        try {
+            String req = "select * from reservation where CreatedBy=? and Place_Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idcreatedby);
+            st.setInt(2, eventid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               
+                r = new Reservation(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getBoolean(3), rs.getInt(4), rs.getInt(5));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
+    }
+public int getbyidcount(int idcreatedby,int eventid) {
+       int r=0;
+        try {
+            String req = "select count(*) from reservation where CreatedBy=? and Place_Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idcreatedby);
+            st.setInt(2, eventid);
+            ResultSet rs = st.executeQuery();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
+    }
 }

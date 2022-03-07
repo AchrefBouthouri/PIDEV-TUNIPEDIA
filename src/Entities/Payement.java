@@ -21,8 +21,42 @@ public class Payement {
     private int id_Offer;
     private int sendtoid;
     private int idreservation;
+    private int QR;
 
     public Payement() {
+    }
+
+    public Payement(int id, Date date, String Description, float Montant, int CreatedBy, int id_Offer, int sendtoid, int idreservation, int QR) {
+        this.id = id;
+        this.date = date;
+        this.Description = Description;
+        this.Montant = Montant;
+        this.CreatedBy = CreatedBy;
+        this.id_Offer = id_Offer;
+        this.sendtoid = sendtoid;
+        this.idreservation = idreservation;
+        this.QR = QR;
+    }
+
+    public Payement(int QR) {
+        this.QR = QR;
+    }
+
+    public Payement(int id, Date date, float Montant) {
+          this.id = id;
+       this.date = date;
+        this.Montant = Montant;
+        
+    }
+
+ 
+
+    public int getQR() {
+        return QR;
+    }
+
+    public void setQR(int QR) {
+        this.QR = QR;
     }
 
     public Payement(String Description, float Montant, int CreatedBy, int id_Offer, int sendtoid, int idreservation) {

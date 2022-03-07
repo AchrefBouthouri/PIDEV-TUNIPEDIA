@@ -67,7 +67,7 @@ public class SignInController implements Initializable {
             System.err.println(us.checkRole(Email.getText()));
             if (us.checkRole(Email.getText()).equals("Admin") && attempt < 4) {
                 Session.getFirstInstance(Session.getUser());
-                home_page_parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                home_page_parent = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 app_stage.hide();
@@ -86,7 +86,7 @@ public class SignInController implements Initializable {
                 Session.getFirstInstance(Session.getUser());
                 int ide = Session.getUser().getId();
                 System.out.println(ide);
-                home_page_parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                home_page_parent = FXMLLoader.load(getClass().getResource("Profile.fxml"));
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 app_stage.hide();

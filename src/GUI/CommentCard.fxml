@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="Box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#select_one" prefHeight="150.0" prefWidth="350.0" styleClass="shadow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommentCardController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox prefHeight="33.0" prefWidth="330.0">
+               <children>
+                  <Label fx:id="Name" prefHeight="33.0" prefWidth="308.0" text="Name ">
+                     <font>
+                        <Font name="Berlin Sans FB" size="17.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="75.0">
+                     <children>
+                        <FontAwesomeIcon fx:id="star1" glyphName="STAR" onMouseClicked="#AddStar1" />
+                        <FontAwesomeIcon fx:id="star2" glyphName="STAR" onMouseClicked="#AddStar2" />
+                        <FontAwesomeIcon fx:id="star3" glyphName="STAR" onMouseClicked="#AddStar3" />
+                        <FontAwesomeIcon fx:id="star4" glyphName="STAR" onMouseClicked="#AddStar4" />
+                        <FontAwesomeIcon fx:id="star5" glyphName="STAR" onMouseClicked="#AddStar5" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Label fx:id="Comment" prefHeight="70.0" prefWidth="327.0" textFill="#ffb700">
+               <font>
+                  <Font name="Berlin Sans FB" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label fx:id="Date" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="385.0" text="Label">
+         <font>
+            <Font name="Berlin Sans FB" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

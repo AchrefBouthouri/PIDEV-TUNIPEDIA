@@ -198,6 +198,35 @@ JFileChooser chooser = new JFileChooser();
     }
 
 
+    @FXML
+    void GoMaps(MouseEvent event) {
+   FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
+        try {
+            Parent root = loader.load();
+            MapController mc = loader.getController();
+           Name.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+    }
+
+    @FXML
+    private void Addevent(ActionEvent event) {
+    }
+
+     @FXML
+    void YourPlaces(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("YourPlaces.fxml"));
+        try {
+            Parent root = loader.load();
+            YourPlacesController ac = loader.getController();
+            Name.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
 
  
 

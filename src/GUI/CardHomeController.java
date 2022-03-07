@@ -6,6 +6,7 @@
 package GUI;
 
 import Entities.Attachement;
+import Entities.Event;
 import Entities.Place;
 import Services.AttachementService;
 import Services.PlaceService;
@@ -57,6 +58,8 @@ public class CardHomeController implements Initializable {
     private FontAwesomeIcon star4;
     @FXML
     private FontAwesomeIcon star5;
+    @FXML
+    private Label views;
 
 
     /**
@@ -66,7 +69,7 @@ public class CardHomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private final String[] colors = {"e6d2b5","9f7866"};
+    private final String[] colors = {"e6d2b5","ffffff"};
     PlaceService ps = new PlaceService();
 
     public int SetData(Place p) {
@@ -75,6 +78,7 @@ public class CardHomeController implements Initializable {
         //System.out.println((Session.getUser().getAvatar()));
         File file = new File(a.getPath());
         Image image = new Image(file.toURI().toString());
+        views.setText(String.valueOf(p.getViews()));
         Attachement.setImage(image);
         id = p.getId();
         Name.setText(p.getName());
@@ -128,7 +132,7 @@ public class CardHomeController implements Initializable {
                 break;
                 
         }
-        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0),10,0,0,10);");
+        Box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";" + "-fx-background-radius: 15;" + "-fx-effect: dropshadow(three-pass-box, rgba(1,0,0,0.8), 10, 0, 0, 10);");
         return p.getId();
 
     }
@@ -137,6 +141,7 @@ public class CardHomeController implements Initializable {
     public void select_one(MouseEvent event) {
         PlaceService pse = new PlaceService();
         Place a = ps.Selectplace(id);
+        pse.IncrementView(a);
         System.out.println("ID" + id);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichagePlace.fxml"));
         try {
@@ -171,6 +176,7 @@ public class CardHomeController implements Initializable {
     }
 
 
+ 
 
 }
 

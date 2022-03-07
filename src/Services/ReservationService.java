@@ -158,4 +158,37 @@ public class ReservationService {
         return theCount;
     }
 
+    public Reservation getbyid(int idcreatedby, int eventid) {
+        Reservation r = null;
+        try {
+            String req = "select * from reservation where CreatedBy=? and Place_Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idcreatedby);
+            st.setInt(2, eventid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+
+                r = new Reservation(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getBoolean(3), rs.getInt(4), rs.getInt(5));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
+    }
+
+    public int getbyidcount(int idcreatedby, int eventid) {
+        int r = 0;
+        try {
+            String req = "select count(*) from reservation where CreatedBy=? and Place_Id=?";
+            PreparedStatement st = mc.prepareStatement(req);
+            st.setInt(1, idcreatedby);
+            st.setInt(2, eventid);
+            ResultSet rs = st.executeQuery();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
+    }
+
 }

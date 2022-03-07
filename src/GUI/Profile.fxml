@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-border-color: #f0af4d; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="840.0" style="-fx-border-color: #f0af4d; -fx-border-width: 10; -fx-border-radius: 8; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfileController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="300.0" spacing="15.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="630.0" prefWidth="219.0" spacing="15.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <ImageView fx:id="avatar" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="photo-profile">
+                  <ImageView fx:id="avatar" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-: 100;" styleClass="photo-profile">
 
                   </ImageView>
                   <Label fx:id="name" prefHeight="21.0" prefWidth="126.0" textFill="WHITE">
@@ -67,7 +67,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" onMouseClicked="#setting" prefHeight="50.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -82,11 +82,6 @@
                               <Insets left="15.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#setting" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #f0af4d;">
-                           <HBox.margin>
-                              <Insets left="-60.0" />
-                           </HBox.margin>
-                        </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
@@ -112,6 +107,6 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="vbox" alignment="CENTER" maxHeight="630.0" maxWidth="600.0" prefHeight="630.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

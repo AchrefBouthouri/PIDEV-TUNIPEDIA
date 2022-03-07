@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class Event {
     private int id;
+     private String Nom;
     private LocalDate date_debut;
     private LocalDate date_fin;
     private String Description;
@@ -20,10 +21,26 @@ public class Event {
     private float montant;
     private int CreatedBy;
     private int Location;
-    private int idoffre;
+   
+   
     private int idattachement;
 
-    public Event(LocalDate date_debut, LocalDate date_fin, String Description, int capacite, float montant, int CreatedBy, int Location, int idoffre,int idattachement) {
+   
+
+    public Event(String Nom,LocalDate date_debut,LocalDate date_fin, String Description, int capacite, float montant, int CreatedBy, int Location,int idattachement) {
+        this.Nom= Nom;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.Description = Description;
+        this.capacite = capacite;
+        this.montant = montant;
+        this.CreatedBy = CreatedBy;
+        this.Location = Location;       
+        this.idattachement= idattachement;
+    }
+
+    public Event(int id,String Nom,LocalDate date_debut, LocalDate date_fin, String Description, int capacite, float montant, int CreatedBy, int Location, int idattachement) {
+        this.id = id;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.Description = Description;
@@ -31,8 +48,16 @@ public class Event {
         this.montant = montant;
         this.CreatedBy = CreatedBy;
         this.Location = Location;
-        this.idoffre = idoffre;
-        this.idattachement= idattachement;
+        this.Nom= Nom;
+        this.idattachement = idattachement;
+    }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String Nom) {
+        this.Nom = Nom;
     }
 
     public void setIdattachement(int idattachement) {
@@ -51,9 +76,7 @@ public class Event {
         return montant;
     }
 
-    public int getIdoffre() {
-        return idoffre;
-    }
+  
 
     public void setCapacite(int capacite) {
         this.capacite = capacite;
@@ -63,9 +86,7 @@ public class Event {
         this.montant = montant;
     }
 
-    public void setIdoffre(int idoffre) {
-        this.idoffre = idoffre;
-    }
+   
 
   
 
@@ -122,7 +143,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", Description=" + Description + ", CreatedBy=" + CreatedBy + ", Location=" + Location + '}';
+        return "Event{" + "id=" + id +", name=" + Nom + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", Description=" + Description + ", CreatedBy=" + CreatedBy + ", Location=" + Location + '}';
     }
 
 }

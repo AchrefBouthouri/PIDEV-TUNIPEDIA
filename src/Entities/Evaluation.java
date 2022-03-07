@@ -17,9 +17,8 @@ public class Evaluation {
     private int Notice;
     private String Comment;
     private int CreatedBy;
-    private String Location;
     private int place_id;
-
+    
     public Evaluation(int id, Date CreatedAt, int Notice, String Comment,int CreatedBy,int place_id) {
         this.id = id;
         this.CreatedAt = CreatedAt;
@@ -29,7 +28,14 @@ public class Evaluation {
         this.place_id=place_id;
         
     }
-   
+    
+    public Evaluation(Date CreatedAt, int Notice, String Comment,int CreatedBy) {
+        this.CreatedAt = CreatedAt;
+        this.Notice = Notice;
+        this.Comment = Comment;
+        this.CreatedBy = CreatedBy;
+        
+    }
     
     public Evaluation(){}
     
@@ -54,9 +60,6 @@ public class Evaluation {
         return CreatedBy;
     }
 
-    public String getLocation() {
-        return Location;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -78,9 +81,6 @@ public class Evaluation {
         this.CreatedBy = CreatedBy;
     }
 
-    public void setLocation(String Location) {
-        this.Location = Location;
-    }
 
     public int getPlace_id() {
         return place_id;
@@ -92,12 +92,7 @@ public class Evaluation {
 
     @Override
     public String toString() {
-        return "Evaluation{" + "id=" + id + ", CreatedAt=" + CreatedAt + ", Notice=" + Notice + ", Comment=" + Comment + ", CreatedBy=" + CreatedBy + ", Location=" + Location + '}';
+        return "Evaluation{" + "id=" + id + ", CreatedAt=" + CreatedAt + ", Notice=" + Notice + ", Comment=" + Comment + ", CreatedBy=" + CreatedBy +'}';
     }
-    
-    
-    
-    
-    
-    
+      
 }

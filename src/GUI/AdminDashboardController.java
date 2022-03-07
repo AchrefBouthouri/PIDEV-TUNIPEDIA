@@ -40,6 +40,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private VBox vbox;
     private Parent fxml;
+
     /**
      * Initializes the controller class.
      */
@@ -100,7 +101,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void AllReclamation(MouseEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("AllCategories.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("AllReclamation.fxml"));
             vbox.getChildren().removeAll();
             vbox.getChildren().setAll(fxml);
         } catch (IOException ex) {
@@ -111,16 +112,12 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void AjouterPlace(MouseEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("AddPlace.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("AddPlaceAdmin.fxml"));
             vbox.getChildren().removeAll();
             vbox.getChildren().setAll(fxml);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    @FXML
-    private void SupprimerPlace(MouseEvent event) {
     }
 
     @FXML
@@ -135,7 +132,14 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    private void SupprimerCategorie(MouseEvent event) {
+    private void AllEvents(MouseEvent event) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("AllEvents.fxml"));
+            vbox.getChildren().removeAll();
+            vbox.getChildren().setAll(fxml);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

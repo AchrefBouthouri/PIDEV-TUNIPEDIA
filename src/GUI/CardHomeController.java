@@ -9,6 +9,7 @@ import Entities.Attachement;
 import Entities.Place;
 import Services.AttachementService;
 import Services.PlaceService;
+import Tools.Session;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
 import java.io.IOException;
@@ -74,7 +75,9 @@ public class CardHomeController implements Initializable {
     public int SetData(Place p) {
         AttachementService as = new AttachementService();
         Attachement a = as.findById(p.getAttachement());
-        //System.out.println((Session.getUser().getAvatar()));
+        
+        //ystem.out.println(a);
+        //System.out.println(p.toString());
         File file = new File(a.getPath());
         Image image = new Image(file.toURI().toString());
         views.setText(String.valueOf(p.getViews()));
@@ -141,7 +144,7 @@ public class CardHomeController implements Initializable {
         PlaceService pse = new PlaceService();
         Place a = ps.Selectplace(id);
         pse.IncrementView(a);
-        System.out.println("ID" + id);
+        //System.out.println("ID" + id);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichagePlace.fxml"));
         try {
             Parent root = loader.load();

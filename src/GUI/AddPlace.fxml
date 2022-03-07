@@ -35,8 +35,8 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </Separator>
-            <Pane maxWidth="869.0" prefHeight="63.0" prefWidth="869.0" HBox.hgrow="ALWAYS" />
-            <HBox prefHeight="63.0" prefWidth="226.0" styleClass="round-layout" stylesheets="@styles.css">
+            <Pane maxWidth="800.0" prefHeight="63.0" prefWidth="869.0" HBox.hgrow="ALWAYS" />
+            <HBox prefHeight="63.0" prefWidth="226.0" style="-fx-border-color: black;" styleClass="round-layout" stylesheets="@styles.css">
                <children>
                   <Label fx:id="ConnectedUsr" alignment="CENTER" prefHeight="54.0" prefWidth="174.0">
                      <font>
@@ -55,9 +55,14 @@
                      </HBox.margin></ImageView>
                </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets top="2.0" />
                </HBox.margin>
             </HBox>
+            <FontAwesomeIcon>
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
          </children>
       </HBox>
    </top>
@@ -246,7 +251,7 @@
          <children>
             <HBox prefHeight="54.0" prefWidth="1281.0">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="563.0" />
+                  <Pane prefHeight="54.0" prefWidth="428.0" />
                   <Label text="ADD PLACE!">
                      <font>
                         <Font name="Berlin Sans FB" size="31.0" />
@@ -416,8 +421,8 @@
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="507.0" />
-                  <Button mnemonicParsing="false" onAction="#AddPlace" prefHeight="24.0" prefWidth="157.0" style="-fx-background-color: #f0af4d;" text="Save" />
+                  <Pane prefHeight="100.0" prefWidth="178.0" />
+                  <Button mnemonicParsing="false" onAction="#AddPlace" prefHeight="24.0" prefWidth="157.0" style="-fx-background-color: green;" text="Save" textFill="WHITE" />
                </children>
             </HBox>
          </children>

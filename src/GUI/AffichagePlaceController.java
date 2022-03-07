@@ -17,9 +17,11 @@ import Services.PersonService;
 import Services.PlaceService;
 import Services.ReservationService;
 import Tools.Session;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -44,6 +47,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -62,7 +66,7 @@ public class AffichagePlaceController implements Initializable {
     private Label cityid;
     @FXML
     private Label postalid;
-    private int id;
+    private int id,note;
     PlaceService ps = new PlaceService();
     @FXML
     private ImageView image;
@@ -70,13 +74,26 @@ public class AffichagePlaceController implements Initializable {
     private Label ConnectedUsr;
     @FXML
     private ImageView ConnectedAvtr;
-    int row,column;
-     private List<Evaluation> evaluations;
+    int row, column;
+    private List<Evaluation> evaluations;
     @FXML
     private GridPane Comments;
     @FXML
     private ScrollPane EvContainer;
-
+    @FXML
+    private Button Reserver;
+    @FXML
+    private FontAwesomeIcon star1;
+    @FXML
+    private FontAwesomeIcon star2;
+    @FXML
+    private FontAwesomeIcon star3;
+    @FXML
+    private FontAwesomeIcon star4;
+    @FXML
+    private FontAwesomeIcon star5;
+    @FXML
+    private TextField Comment;
 
     public int getId() {
         return id;
@@ -99,14 +116,14 @@ public class AffichagePlaceController implements Initializable {
         // Attachement.setImage(image);
         // TODO
         Person p1 = ps1.findById((Session.getUser().getId()));
-             AttachementService as = new AttachementService();
+        AttachementService as = new AttachementService();
         Attachement a = as.findById(p1.getAvatar());
         //System.out.println((Session.getUser().getAvatar()));
         File file = new File(a.getPath());
         Image image = new Image(file.toURI().toString());
         ConnectedAvtr.setImage(image);
         ConnectedUsr.setText(Session.getUser().getFullName());
-         evaluations = new ArrayList<>(es.afficherEvaluation());
+        evaluations = new ArrayList<>(es.afficherEvaluation());
         column = 0;
         row = 1;
     }
@@ -118,7 +135,6 @@ public class AffichagePlaceController implements Initializable {
     public void setPlacename(Label placename) {
         this.placename = placename;
     }
-    
 
     public void afficher() {
         AttachementService as = new AttachementService();
@@ -132,23 +148,26 @@ public class AffichagePlaceController implements Initializable {
         cityid.setText(ps.Selectplace(this.getId()).getCity());
         placedescription.setText(ps.Selectplace(this.getId()).getDescription());
         postalid.setText(ps.Selectplace(this.getId()).getPostalCode());
+        if ("Public".equals(ps.Selectplace(this.getId()).getType())) {
+            Reserver.setVisible(false);
+        }
         //System.out.println(this.getId());
-                try {
+        try {
             for (Evaluation e : evaluations) {
-                if(e.getLocation().equals(placename.getText())){
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("CommentCard.fxml"));
-                VBox cardBox = loader.load();
-                CommentCardController commentCardController = loader.getController();
-                commentCardController.SetData(e);
-                if (column == 1) {
-                    column = 0;
-                    ++row;
+                if (e.getPlace_id() == this.getId()) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("CommentCard.fxml"));
+                    VBox cardBox = loader.load();
+                    CommentCardController commentCardController = loader.getController();
+                    commentCardController.SetData(e);
+                    if (column == 1) {
+                        column = 0;
+                        ++row;
+                    }
+                    Comments.add(cardBox, column++, row);
+                    GridPane.setMargin(cardBox, new Insets(10));
                 }
-                Comments.add(cardBox, column++, row);
-                GridPane.setMargin(cardBox, new Insets(10));
             }
-                }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -207,7 +226,7 @@ public class AffichagePlaceController implements Initializable {
 //                rs.AjouterReservation(r);
 //                System.out.println("payer");
 //                PayementService pse = new PayementService();
-//                pse.Payer(r, "Effectué", this.getId(), 1, ps.gettheprice(this.getId()), ps.gettheowner(this.getId()), Session.getUser().getId());
+//                pse.Payer(r, "EffectuÃ©", this.getId(), 1, ps.gettheprice(this.getId()), ps.gettheowner(this.getId()), Session.getUser().getId());
 //                Validation = false;
 //                System.out.println(ps.gettheprice(this.getId()));
 //            } else {
@@ -224,14 +243,14 @@ public class AffichagePlaceController implements Initializable {
 //    }
     @FXML
     void BackHome(MouseEvent event) {
-   FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
         try {
             Parent root = loader.load();
             HomeController hc = loader.getController();
-           adresseid.getScene().setRoot(root);
+            adresseid.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        } 
+        }
     }
 
     @FXML
@@ -241,7 +260,6 @@ public class AffichagePlaceController implements Initializable {
     @FXML
     private void Addevent(ActionEvent event) {
     }
-
 
     @FXML
     public void AddP() {
@@ -267,18 +285,102 @@ public class AffichagePlaceController implements Initializable {
         }
     }
 
-
-
-    @FXML
     void GoMaps(ActionEvent event) {
-   FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Map.fxml"));
         try {
             Parent root = loader.load();
             MapController mc = loader.getController();
-           placename.getScene().setRoot(root);
+            placename.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        } 
+        }
+    }
+
+    @FXML
+    private void GoMaps(MouseEvent event) {
+    }
+
+    @FXML
+    private void Reclamer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddRec.fxml"));
+        try {
+            Parent root = loader.load();
+            AddRecController arc = loader.getController();
+            placename.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void Reserver(ActionEvent event) {
+    }
+
+    @FXML
+    private void AddStar1(MouseEvent event) {
+        star1.setFill(Color.rgb(253, 193, 2));
+        star2.setFill(Color.BLACK);
+        star3.setFill(Color.BLACK);
+        star4.setFill(Color.BLACK);
+        star5.setFill(Color.BLACK);
+        note = 1;
+    }
+
+    @FXML
+    private void AddStar2(MouseEvent event) {
+        star1.setFill(Color.rgb(253, 193, 2));
+        star2.setFill(Color.rgb(253, 193, 2));
+        star3.setFill(Color.BLACK);
+        star4.setFill(Color.BLACK);
+        star5.setFill(Color.BLACK);
+        note = 2;
+    }
+
+    @FXML
+    private void AddStar3(MouseEvent event) {
+        star1.setFill(Color.rgb(253, 193, 2));
+        star2.setFill(Color.rgb(253, 193, 2));
+        star3.setFill(Color.rgb(253, 193, 2));
+        star4.setFill(Color.BLACK);
+        star5.setFill(Color.BLACK);
+         note = 3;
+    }
+
+    @FXML
+    private void AddStar4(MouseEvent event) {
+        star1.setFill(Color.rgb(253, 193, 2));
+        star2.setFill(Color.rgb(253, 193, 2));
+        star3.setFill(Color.rgb(253, 193, 2));
+        star4.setFill(Color.rgb(253, 193, 2));
+        star5.setFill(Color.BLACK);
+        note = 4;
+    }
+
+    @FXML
+    private void AddStar5(MouseEvent event) {
+        star1.setFill(Color.rgb(253, 193, 2));
+        star2.setFill(Color.rgb(253, 193, 2));
+        star3.setFill(Color.rgb(253, 193, 2));
+        star4.setFill(Color.rgb(253, 193, 2));
+        star5.setFill(Color.rgb(253, 193, 2));
+        note = 5;
+    }
+
+    @FXML
+    private void Evaluer(MouseEvent event) {
+        Evaluation E = new Evaluation(0, new Date(10,12,11), note, Comment.getText(), Session.getUser().getId(), id);
+        es.AjouterEvaluation(E);
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichagePlace.fxml"));
+        try {
+            Parent root = loader.load();
+            AffichagePlaceController apc = new AffichagePlaceController();
+            apc = loader.getController();
+            apc.setId(id);
+            apc.afficher();
+            Comment.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

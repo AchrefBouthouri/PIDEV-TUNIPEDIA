@@ -6,15 +6,19 @@
 package GUI;
 
 import Entities.Attachement;
+import Entities.Evaluation;
 import Entities.Person;
 import Entities.Place;
+import Entities.Reclamation;
 import Services.AttachementService;
+import Services.EvaluationService;
 import Services.PersonService;
 import Services.PlaceService;
 import Tools.Session;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -72,6 +76,9 @@ public class HomeController implements Initializable {
      */
     PlaceService ps = new PlaceService();
     PersonService ps1 = new PersonService();
+    List<Evaluation> listE = new ArrayList<Evaluation>();
+    
+
     @FXML
     private TextField SearchBar;
 
@@ -84,17 +91,31 @@ public class HomeController implements Initializable {
         AttachementService as = new AttachementService();
         Attachement a = as.findById(p1.getAvatar());
         //System.out.println((Session.getUser().getAvatar()));
+        //System.out.println(p1.getAvatar());
         File file = new File(a.getPath());
         Image image = new Image(file.toURI().toString());
         ConnectedAvtr.setImage(image);
         //String balance = Float.toString(Session.getUser().getBalance());
         //ch_balance.setText(balance);
-        places = new ArrayList<>(pa.afficherPlace());
+        places = new ArrayList<Place>(pa.afficherPlace());
         column = 0;
         row = 1;
         try {
             for (Place p : places) {
                 if (p.isStatus() == true) {
+                    EvaluationService ev = new EvaluationService();
+                    listE.addAll(ev.getAllEvaluationById(p.getId()));
+                    //System.out.println(listE.toString());
+                    if (!listE.isEmpty()) {
+                        int notice = 0;
+                        for (Evaluation e : listE) {
+                            notice = notice + e.getNotice();
+                        }
+                        int newNotice = notice % listE.size();
+                        p.setNotice(newNotice);
+                        //System.out.println(newNotice);
+                    }
+                    
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("CardHome.fxml"));
                     VBox cardBox = loader.load();
@@ -164,19 +185,19 @@ public class HomeController implements Initializable {
 
     private List<Place> searchList(String searchWords) {
         List<Place> searchedplaces = new ArrayList<>();
-        if (searchWords == null || searchWords.isEmpty()){
+        if (searchWords == null || searchWords.isEmpty()) {
             return pa.afficherPlace();
-        }
-        else {
-        places.stream().filter((p) -> (p.getName().toLowerCase().contains(searchWords.toLowerCase()))).forEachOrdered((p) -> {
-            searchedplaces.add(p);
-        });
-        return searchedplaces;
+        } else {
+            places.stream().filter((p) -> (p.getName().toLowerCase().contains(searchWords.toLowerCase()))).forEachOrdered((p) -> {
+                searchedplaces.add(p);
+            });
+            return searchedplaces;
         }
     }
+
     @FXML
     private void search(KeyEvent event) {
-                PlaceContainer.getChildren().clear();
+        PlaceContainer.getChildren().clear();
         row = 1;
         column = 0;
         try {
@@ -199,7 +220,6 @@ public class HomeController implements Initializable {
         }
 
     }
-
 
     @FXML
     void GoMaps(MouseEvent event) {
@@ -243,7 +263,7 @@ public class HomeController implements Initializable {
                 }
                 break;
             case "A-Z":
-                      PlaceContainer.getChildren().clear();
+                PlaceContainer.getChildren().clear();
                 row = 1;
                 column = 0;
                 places = new ArrayList<>(pa.afficherPlaceByAZ());
@@ -268,7 +288,7 @@ public class HomeController implements Initializable {
                 }
                 break;
             case "Z-A":
-                     PlaceContainer.getChildren().clear();
+                PlaceContainer.getChildren().clear();
                 row = 1;
                 column = 0;
                 places = new ArrayList<>(pa.afficherPlaceByZA());
@@ -294,7 +314,54 @@ public class HomeController implements Initializable {
                 break;
         }
     }
+    
+    
+    @FXML
+    private void GoCategories(MouseEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Categories.fxml"));
+        try {
+            Parent root = loader.load();
+            CategoriesController cc = loader.getController();
+            PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
+    @FXML
+    private void GoEvents(MouseEvent event) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EventHome.fxml"));
+        try {
+            Parent root = loader.load();
+            EventHomeController mc = loader.getController();
+           PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+    }
 
+    @FXML
+    private void GoProfile(MouseEvent event) {
+        PersonService ps = new PersonService();
+       if (ps.checkRole(ConnectedUsr.getText()).equals("Admin")) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminDashboard.fxml"));
+        try {
+            Parent root = loader.load();
+            AdminDashboardController adc = loader.getController();
+           PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } }
+       else {
+                          FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+        try {
+            Parent root = loader.load();
+            ProfileController pc = loader.getController();
+           PlaceContainer.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
+    }
 
 }

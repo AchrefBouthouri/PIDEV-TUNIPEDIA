@@ -57,9 +57,9 @@ public class AddEventController implements Initializable {
 
         String Description = description.getText();
         
-        Event e = new Event(DPCurrentDate, Datefin, Description, Capacite, Prix,Session.getUser().getId(),55,55,55);
+      //  Event e = new Event(DPCurrentDate, Datefin, Description, Capacite, Prix,Session.getUser().getId(),55,55,55);
         EventService ps = new EventService(); 
-        ps.AjouterEvent(e);
+        //ps.AjouterEvent(e);
     }
     
     

@@ -6,6 +6,7 @@
 package Entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,15 +14,15 @@ import java.sql.Date;
  */
 public class Offer {
       private int id;
-    private Date date_debut;
-    private Date date_fin;
+    private LocalDate date_debut;
+    private LocalDate date_fin;
     private float Montant; 
     private int id_Event;
     private String Location;
     
   
 
-    public Offer(int id, Date date_debut, Date date_fin, float Montant, int id_Event) {
+    public Offer(int id, LocalDate date_debut, LocalDate date_fin, float Montant, int id_Event) {
         this.id = id;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
@@ -44,11 +45,11 @@ public class Offer {
         return id;
     }
 
-    public Date getDate_debut() {
+    public LocalDate getDate_debut() {
         return date_debut;
     }
 
-    public Date getDate_fin() {
+    public LocalDate getDate_fin() {
         return date_fin;
     }
 
@@ -69,11 +70,11 @@ public class Offer {
         this.id = id;
     }
 
-    public void setDate_debut(Date date_debut) {
+    public void setDate_debut(LocalDate date_debut) {
         this.date_debut = date_debut;
     }
 
-    public void setDate_fin(Date date_fin) {
+    public void setDate_fin(LocalDate date_fin) {
         this.date_fin = date_fin;
     }
 
@@ -88,17 +89,10 @@ public class Offer {
     public void setLocation(String Location) {
         this.Location = Location;
     }
-
-  
- 
-
-
-
-   
-
+    
     @Override
     public String toString() {
-        return "**********\n" + "\nid=" + id + ",\n date_debut=" + date_debut + ",\n date_fin=" + date_fin + ",\n Montant=" + Montant + ",\n Location=" + Location +  "\n******************";
+        return  date_debut + "          " + date_fin + "          "+ Location+ "          " + Montant + "          " + id_Event  ;
     }
 
 }

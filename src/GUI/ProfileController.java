@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
@@ -57,7 +58,7 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setting(ActionEvent event) {
+    private void setting(MouseEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("SettingProfile.fxml"));
             vbox.getChildren().removeAll();
@@ -66,6 +67,5 @@ public class ProfileController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
 
 }

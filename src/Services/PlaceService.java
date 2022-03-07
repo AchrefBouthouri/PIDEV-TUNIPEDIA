@@ -70,9 +70,47 @@ public class PlaceService {
 
     public List<Place> afficherPlace() {
         List<Place> place = new ArrayList<>();
-        String sql = "SELECT p.Id,p.Name,p.Description,p.Adress,p.City,p.PostalCode,p.Latitude,p.Longitude,p.Evaluation,p.Notice,p.Status,p.Createdby,p.Type,p.Attachement,p.Views,c.Name from Place AS p INNER JOIN category AS c ON p.category=c.id";
+        String sql = "SELECT Id,Name,Description,Adress,City,PostalCode,Latitude,Longitude,Evaluation,Notice,Status,Createdby,Type,Attachement,Views,category from Place";
         try {
             ste = mc.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Place p = new Place();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setAdresse(rs.getString(4));
+                p.setCity(rs.getString(5));
+                p.setPostalCode(rs.getString(6));
+                p.setLatitude(rs.getString(7));
+                p.setLongitude(rs.getString(8));
+                p.setEvaluation(rs.getInt(9));
+                p.setNotice(rs.getInt(10));
+                p.setStatus(rs.getBoolean(11));
+                p.setCreatedBy(rs.getInt(12));
+                String TypeStr = rs.getString(13);
+                Type TypeEnum = Type.valueOf(TypeStr);
+                p.setType(TypeEnum);
+                p.setAttachement(rs.getInt(14));
+                 p.setViews(rs.getInt(15));
+                p.setCategory_id(rs.getInt("Category"));
+                place.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        // System.out.println(personnes);
+        return place;
+
+    }
+    
+    
+     public List<Place> getPlaceByCat(int id) {
+        List<Place> place = new ArrayList<>();
+        String sql = "SELECT * from Place where Category=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, id);
             ResultSet rs = ste.executeQuery();
             while (rs.next()) {
                 Place p = new Place();
@@ -103,6 +141,7 @@ public class PlaceService {
         return place;
 
     }
+    
 
     public void SupprimerPlace(int id) {
         String sql = "delete from Place where Id=?";

@@ -94,6 +94,26 @@ public class Place {
         //private int[] evaluations;
     }
 
+    public Place(int id, String name, String Description, String Adresse, String City, String PostalCode, String Latitude, String Longitude, int category_id, int evaluation, int Notice, boolean Status, int CreatedBy, Type type, int attachement_id, int views) {
+        this.id = id;
+        this.name = name;
+        this.Description = Description;
+        this.Adresse = Adresse;
+        this.City = City;
+        this.PostalCode = PostalCode;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.category_id = category_id;
+        this.evaluation = evaluation;
+        this.Notice = Notice;
+        this.Status = Status;
+        this.CreatedBy = CreatedBy;
+        this.type = type;
+        this.attachement_id = attachement_id;
+        this.views = views;
+    }
+    
+
     public Place() {
 
     }

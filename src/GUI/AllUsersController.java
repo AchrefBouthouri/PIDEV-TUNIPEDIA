@@ -86,7 +86,7 @@ public class AllUsersController implements Initializable {
         createdat.setCellValueFactory(new PropertyValueFactory<>("createdat"));
         // System.out.println("_________"+new PropertyValueFactory<>("createdat"));
         ispartner.setCellValueFactory(new PropertyValueFactory<>("ispartner"));
-        System.out.println(data);
+        //System.out.println(data);
         tabu.setItems(data);
         // TODO
     }

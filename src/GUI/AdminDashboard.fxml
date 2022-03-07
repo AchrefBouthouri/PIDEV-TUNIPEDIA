@@ -168,7 +168,7 @@
                   <Insets right="5.0" />
                </VBox.margin>
             </VBox>
-            <HBox alignment="CENTER" maxWidth="297.0" onMouseClicked="#AllReclamation" prefHeight="118.0" prefWidth="219.0">
+            <HBox alignment="CENTER" maxWidth="297.0" onMouseClicked="#AllEvents" prefHeight="118.0" prefWidth="219.0">
                <children>
                   <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>

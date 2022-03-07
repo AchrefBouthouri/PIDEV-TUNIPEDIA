@@ -58,7 +58,9 @@ public class SettingProfileController implements Initializable {
     private RadioButton rb2;
     @FXML
     private ComboBox<String> nationality;
-
+    
+     private Parent fxml;
+    
     @FXML
     ToggleGroup gen = new ToggleGroup();
     String[] countries = Locale.getISOCountries();
@@ -96,15 +98,13 @@ public class SettingProfileController implements Initializable {
         PersonService ps = new PersonService();
         AttachementService as = new AttachementService();
 
-        if (name.getText() != null) {
+        if (!name.getText().isEmpty()) {
             ps.UpdateFullName(name.getText(), Session.getUser().getId());
         }
         if (rb1.isSelected()) {
 
             ps.UpdateGender(Gend, Session.getUser().getId());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Gender modifier avec succes !!");
-            alert.showAndWait();
         }
         if (rb2.isSelected()) {
 
@@ -119,7 +119,7 @@ public class SettingProfileController implements Initializable {
             alert.setHeaderText("Nationalite modifier avec succes !!");
             alert.showAndWait();
         }
-        if (oldpassword.getText() != null && newpassword.getText() != null && confimepassword.getText() != null) {
+        if (!oldpassword.getText().isEmpty() && !newpassword.getText().isEmpty() && !confimepassword.getText().isEmpty()) {
             if (newpassword.getText().equals(confimepassword.getText())) {
                 Md5 var = new Md5(newpassword.getText());
                 ps.UpdatePassword(var.codeGet(), Session.getUser().getId());
@@ -134,22 +134,22 @@ public class SettingProfileController implements Initializable {
 
         }
         if (Filename != null) {
-            String name = Filename.substring(78);
+            String name = Filename.substring(50);
             Attachement a = new Attachement(0, name, Filename);
             as.ajouterAttachement(a);
             Attachement a1 = as.findByPath(Filename);
             ps.UpdateAvatar(Session.getUser().getId(), a1.getId());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Upload Image !!");
+            alert.setHeaderText("Error Upload Image !!");
             alert.showAndWait();
         }
 
-        Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-        Scene home_page_scene = new Scene(root);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(home_page_scene);
-        app_stage.show();
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 

@@ -6,11 +6,13 @@
 package Tests;
 
 import Entities.Client;
+import Entities.Evaluation;
 import Entities.Offer;
 import Entities.Person;
 import Entities.Place;
 import Enum.Gender;
 import Enum.Type;
+import Services.EvaluationService;
 import Services.OfferService;
 import Services.PersonService;
 import Services.PlaceService;
@@ -50,7 +52,7 @@ public class Test {
 
         //Attachement a1 = new Attachement(0, "ville.png", "src/ville.png");
         //Category c1 = new Category(0,"Ville",a1.getId());
-        Offer o = new Offer(2, new Date(122, 1, 1), new Date(122, 1, 1), 500, 8);
+        //Offer o = new Offer(2, new Date(122, 1, 1), new Date(122, 1, 1), 500, 8);
 
         // os.ajouterOffer(o);
         //  os.SupprimerOffer(o);
@@ -63,6 +65,9 @@ public class Test {
         //System.out.println(ps.afficherPerson());
         //pls.AjouterPlace(pl1, p1);
         System.out.println(pls.afficherPlaceByTop());
+        
+        EvaluationService ev =new EvaluationService();
+        System.out.println(ev.getAllEvaluationById(14));
      
     }
 

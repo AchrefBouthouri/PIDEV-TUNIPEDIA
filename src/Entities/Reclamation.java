@@ -13,15 +13,28 @@ public class Reclamation {
     private int id;
     private String Text;
     private int CreatedBy;
-    private int Place_id;
-    private String Location;
+    private int Location;
+    private int Attachement;
 
-    public Reclamation(int id, String Text, int CreatedBy,int Place_id) {
+ 
+
+    public Reclamation(int id, String Text, int CreatedBy,int Location) {
         this.id = id;
         this.Text = Text;
         this.CreatedBy = CreatedBy;
-        this.Place_id = Place_id;
+        this.Location = Location;
+
     }
+    
+    
+    public Reclamation(int id, String Text, int CreatedBy,int Location,int Attachement) {
+        this.id = id;
+        this.Text = Text;
+        this.CreatedBy = CreatedBy;
+        this.Location = Location;
+        this.Attachement = Attachement;
+    }
+
 
     public Reclamation() {
        
@@ -39,11 +52,11 @@ public class Reclamation {
         this.CreatedBy = CreatedBy;
     }
 
-    public void setPlace_id(int Place_id) {
-        this.Place_id = Place_id;
+    public void setPlace_id(int Location) {
+        this.Location = Location;
     }
 
-    public void setLocation(String Location) {
+    public void setLocation(int Location) {
         this.Location = Location;
     }
 
@@ -60,16 +73,16 @@ public class Reclamation {
     }
 
     public int getPlace_id() {
-        return Place_id;
+        return Location;
     }
 
-    public String getLocation() {
+    public int getLocation() {
         return Location;
     }
 
     @Override
     public String toString() {
-        return "***************" + "\nid=" + id + ",\nText=" + Text + ",\nCreatedBy=" + CreatedBy + ",\nLocation=" + Location + "\n******************";
+        return Text;
     }
     
     

@@ -11,11 +11,12 @@
 
     </head>
     <body>
-        <div id="mapid" style="height: 600px;"></div>
+        <div id="mapid" style="height: 800px;"></div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
         <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+        
                     <script>
                 var mymap = L.map('mapid').setView([33.8869, 9.5375], 6);
 
@@ -91,6 +92,10 @@
                 //circle.bindPopup(this.popupService.makeCapitalPopup(place));
                 circle11.addTo(mymap);
                 var popup11 = circle11.bindPopup('Chott el Djerid');
+                const circle12 = L.marker([35.671391, 10.1027682], {icon: One});
+                //circle.bindPopup(this.popupService.makeCapitalPopup(place));
+                circle12.addTo(mymap);
+                var popup12 = circle12.bindPopup('Tmakhmikha');
 
 
                 L.Routing.control({
@@ -98,7 +103,7 @@
                 }).addTo(mymap);
                 L.control.locate().addTo(mymap);
 
-
+                
 
             </script>
     </body>

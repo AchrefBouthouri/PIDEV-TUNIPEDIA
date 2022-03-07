@@ -325,7 +325,7 @@ public class PersonService {
             ste.setString(1, u.getEmail());
             ResultSet rs = ste.executeQuery();
             while (rs.next()) {
-                System.out.println(var.codeGet() + "/" + rs.getString("Password"));
+                //System.out.println(var.codeGet() + "/" + rs.getString("Password"));
                 if (var.codeGet().equals(rs.getString("Password"))) {
                     status = true;
                     u = this.findById(rs.getInt("Id"));

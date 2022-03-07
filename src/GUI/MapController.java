@@ -99,4 +99,16 @@ public class MapController implements Initializable {
             System.out.println(ex.getMessage());
         } 
     }
+        @FXML
+    private void GoCategories(MouseEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Categories.fxml"));
+        try {
+            Parent root = loader.load();
+            CategoriesController cc = loader.getController();
+            ConnectedUsr.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+        
 }

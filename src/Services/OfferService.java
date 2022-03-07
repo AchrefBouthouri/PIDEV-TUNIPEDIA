@@ -9,6 +9,7 @@ import Entities.Offer;
 
 import Tools.ConnexionDB;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class OfferService{
         try {
             ste=mc.prepareStatement(sql);
            
-            ste.setDate(1, o.getDate_debut());
-            ste.setDate(2, o.getDate_fin());
+            ste.setDate(1, Date.valueOf(o.getDate_debut()));
+            ste.setDate(2, Date.valueOf(o.getDate_fin()));
             ste.setFloat(3, o.getMontant());
             ste.setInt(4, o.getId_Event());
             
@@ -56,8 +57,8 @@ public class OfferService{
             while(rs.next()){
             Offer o = new Offer();
             o.setId(rs.getInt(1));
-           o.setDate_debut(rs.getDate(2));
-            o.setDate_fin(rs.getDate(3));
+            o.setDate_debut(rs.getDate(2).toLocalDate());
+            o.setDate_fin(rs.getDate(3).toLocalDate());
             o.setMontant(rs.getFloat(4));
             o.setLocation(rs.getString(5));
            

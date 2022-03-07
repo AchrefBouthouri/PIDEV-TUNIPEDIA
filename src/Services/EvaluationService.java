@@ -29,18 +29,18 @@ import java.sql.Date;
  * @author user
  */
 public class EvaluationService {
-
+    
     Connection mc;
     PreparedStatement ste;
-
+    
     public EvaluationService() {
         mc = ConnexionDB.getInstance().getCnx();
-
+        
     }
-
+    
     ;
   public void AjouterEvaluation(Evaluation E) {
-
+        
         String sql = "insert into evaluation(CreatedAt,Notice,Comment,place_id,CreatedBy) values(now(),?,?,?,?)";
         try {
             ste = mc.prepareStatement(sql);
@@ -53,24 +53,23 @@ public class EvaluationService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+        
     }
-
+    
     ;
   public List<Evaluation> afficherEvaluation() {
         List<Evaluation> Evaluations = new ArrayList<>();
-        String sql = "SELECT E.notice,E.CreatedAt, E.comment,E.Createdby,p.Name from Evaluation AS E INNER JOIN Place AS p ON E.Place_id=p.id";
+        String sql = "SELECT * from Evaluation";
         try {
             ste = mc.prepareStatement(sql);
             ResultSet rs = ste.executeQuery();
             while (rs.next()) {
                 Evaluation E = new Evaluation();
-                E.setNotice(rs.getInt(1));
-                E.setCreatedAt(rs.getDate(2));
-                E.setComment(rs.getString(3));
-                E.setCreatedBy(rs.getInt(4));
-
-                E.setLocation(rs.getString(5));
+                E.setNotice(rs.getInt("Notice"));
+                E.setCreatedAt(rs.getDate("CreatedAt"));
+                E.setComment(rs.getString("Comment"));
+                E.setCreatedBy(rs.getInt("CreatedBy"));
+                E.setPlace_id(rs.getInt("Place_id"));
                 Evaluations.add(E);
             }
         } catch (SQLException ex) {
@@ -79,7 +78,7 @@ public class EvaluationService {
         // System.out.println(personnes);
         return Evaluations;
     }
-
+    
     public void UpdateDte(Date CreatedAt, Evaluation E) {
         String sql = "UPDATE  Evaluation set CreatedAt=? where id=?";
         try {
@@ -92,7 +91,7 @@ public class EvaluationService {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     ;
         
    public void UpdateNotice(int Notice, Evaluation E) {
@@ -107,7 +106,7 @@ public class EvaluationService {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     ;
    
    
@@ -124,7 +123,7 @@ public class EvaluationService {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public void SupprimerEvaluation(Evaluation E) {
         String sql = "delete from Evaluation where ID=?";
         try {
@@ -136,5 +135,30 @@ public class EvaluationService {
             System.out.println(ex.getMessage());
         }
     }
-
+    
+    public List<Evaluation> getAllEvaluationById(int id) {
+        List<Evaluation> Evaluations = new ArrayList<>();
+        String sql = "select * from Evaluation where Place_id=?";
+        try {
+            ste = mc.prepareStatement(sql);
+            ste.setInt(1, id);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                Evaluation E = new Evaluation();
+                E.setId(rs.getInt("Id"));
+                E.setCreatedBy(rs.getInt("CreatedBy"));
+                E.setNotice(rs.getInt("Notice"));
+                E.setComment(rs.getString("Comment"));
+                E.setCreatedAt(rs.getDate("CreatedAt"));
+                E.setPlace_id(rs.getInt("Place_id"));
+                
+                Evaluations.add(E);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        //System.out.println("service" + Evaluations);
+        return Evaluations;
+    }
+    
 };

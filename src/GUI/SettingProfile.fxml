@@ -16,14 +16,21 @@
     <children>
         <VBox layoutX="-1.0" prefHeight="570.0" prefWidth="600.0">
             <children>
-                <Label alignment="TOP_LEFT" prefHeight="65.0" prefWidth="226.0" style="-fx-background-color: f0af4d;" text="Setting Profile" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="24.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                    </padding>
-                </Label>
+            <HBox prefHeight="69.0" prefWidth="600.0" style="-fx-background-color: e3e4e6;">
+               <children>
+                      <Label alignment="TOP_LEFT" maxHeight="45.0" prefHeight="45.0" prefWidth="221.0" style="-fx-background-color: f0af4d;" text="Setting Profile" textFill="WHITE">
+                          <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                          </font>
+                          <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                      </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="2.0" />
+               </VBox.margin>
+            </HBox>
                 <HBox prefHeight="62.0" prefWidth="600.0">
                     <children>
                         <Label text="Name">
@@ -118,14 +125,24 @@
                 </HBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="65.0" prefWidth="236.0" style="-fx-background-color: f0af4d;" text="Change Password" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="24.0" />
-                            </font>
-                            <padding>
-                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                            </padding>
-                        </Label>
+                  <HBox prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: e3e4e6;">
+                     <children>
+                              <Label alignment="TOP_LEFT" prefHeight="45.0" prefWidth="221.0" style="-fx-background-color: f0af4d;" text="Change Password" textFill="WHITE">
+                                  <font>
+                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                  </font>
+                                  <padding>
+                                      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                  </padding>
+                              </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="2.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="2.0" />
+                     </VBox.margin>
+                  </HBox>
                         <HBox prefHeight="18.0" prefWidth="600.0">
                             <children>
                                 <Label text="Old Password">
@@ -179,10 +196,13 @@
                         </HBox>
                     </children>
                 </VBox>
-                <Button alignment="TOP_CENTER" maxWidth="139.0" mnemonicParsing="false" onAction="#Onclick" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: green;" styleClass="btn-profile" stylesheets="@styles.css" text="Save" textFill="WHITE">
+                <Button alignment="TOP_CENTER" maxWidth="139.0" mnemonicParsing="false" onAction="#Onclick" prefHeight="34.0" prefWidth="139.0" style="-fx-background-color: green;" styleClass="btn-profile" stylesheets="@styles.css" text="Save" textFill="WHITE">
                     <VBox.margin>
-                        <Insets bottom="15.0" left="450.0" />
+                        <Insets bottom="15.0" left="430.0" />
                     </VBox.margin>
+               <font>
+                  <Font name="Berlin Sans FB" size="12.0" />
+               </font>
                 </Button>
             </children>
         </VBox>

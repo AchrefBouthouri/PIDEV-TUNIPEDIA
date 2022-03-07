@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1281.0" style="-fx-border-color: #f0af4d; -fx-border-width: 10; -fx-border-radius: 8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeController">
    <top>
       <HBox prefHeight="0.0" prefWidth="1201.0" spacing="20.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -35,7 +35,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </Separator>
-            <HBox maxHeight="25.0" maxWidth="200.0" prefHeight="25.0" prefWidth="170.0" styleClass="round-layout" stylesheets="@styles.css">
+            <HBox maxHeight="25.0" maxWidth="200.0" prefHeight="25.0" prefWidth="170.0" style="-fx-border-color: black; -fx-border-width: 1;" styleClass="round-layout" stylesheets="@styles.css">
                <children>
                   <TextField fx:id="SearchBar" alignment="TOP_LEFT" onKeyReleased="#search" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
                      <HBox.margin>
@@ -55,8 +55,8 @@
                   <Insets top="18.0" />
                </HBox.margin>
             </HBox>
-            <Pane maxWidth="680.0" prefHeight="63.0" prefWidth="661.0" HBox.hgrow="ALWAYS" />
-            <HBox prefHeight="63.0" prefWidth="226.0" styleClass="round-layout" stylesheets="@styles.css">
+            <Pane maxWidth="600.0" prefHeight="70.0" prefWidth="549.0" HBox.hgrow="ALWAYS" />
+            <HBox onMouseClicked="#GoProfile" prefHeight="63.0" prefWidth="226.0" style="-fx-border-color: black;" styleClass="round-layout" stylesheets="@styles.css">
                <children>
                   <Label fx:id="ConnectedUsr" alignment="CENTER" prefHeight="54.0" prefWidth="174.0">
                      <font>
@@ -75,9 +75,14 @@
                      </HBox.margin></ImageView>
                </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets bottom="2.0" right="5.0" top="2.0" />
                </HBox.margin>
             </HBox>
+            <FontAwesomeIcon glyphName="CLOSE" wrappingWidth="18.8570556640625">
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
          </children>
       </HBox>
    </top>
@@ -144,7 +149,7 @@
                               <Insets left="10.0" top="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="Categories">
+                        <Label onMouseClicked="#GoCategories" text="Categories">
                            <HBox.margin>
                               <Insets left="10.0" top="7.0" />
                            </HBox.margin>
@@ -191,7 +196,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="29.0" prefWidth="155.0">
+                  <HBox onMouseClicked="#GoEvents" prefHeight="29.0" prefWidth="155.0">
                      <children>
                         <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -211,9 +216,9 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#Addevent" prefHeight="33.2" prefWidth="180.0" style="-fx-background-color: #f0af4d;" text="Add Event">
+                  <Button mnemonicParsing="false" onAction="#Addevent" prefHeight="34.0" prefWidth="151.0" style="-fx-background-color: #f0af4d;" text="Create Event">
                      <VBox.margin>
-                        <Insets left="5.0" top="10.0" />
+                        <Insets left="20.0" top="10.0" />
                      </VBox.margin></Button>
                </children>
             </VBox>
@@ -254,9 +259,9 @@
                   </HBox>
                   <HBox prefHeight="33.0" prefWidth="81.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddP" prefHeight="96.0" prefWidth="180.0" style="-fx-background-color: #f0af4d;" text="CREATE PLACE!">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddP" prefHeight="34.0" prefWidth="151.0" style="-fx-background-color: #f0af4d;" text="Create Place">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="20.0" />
                            </HBox.margin></Button>
                      </children>
                      <opaqueInsets>
@@ -286,9 +291,9 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="42.0" prefWidth="733.0" />
-                  <ComboBox fx:id="Trier" onAction="#Trier" prefHeight="31.0" prefWidth="185.0" promptText="Trier" style="-fx-background-color: #f0af4d;">
+                  <ComboBox fx:id="Trier" onAction="#Trier" prefHeight="31.0" prefWidth="130.0" promptText="Trier" style="-fx-background-color: #f0af4d;">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets right="20.0" top="20.0" />
                      </HBox.margin>
                   </ComboBox>
                </children>
